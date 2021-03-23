@@ -1,0 +1,9 @@
+.env
+
+package-lock.json
+
+.glitch-assets
+
+shrinkwrap.yaml
+
+.json.sqlite

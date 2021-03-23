@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Registo</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="icon" href="/icon.png"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <script src="//code-sa1.jivosite.com/widget/8kgtvjrkSC" async></script>
+  </head>
+  <body>
+      <nav class="navbar">
+          <img src="/logo.png" alt="Logo"/>
+        <a href="#" class="toggle-button" onclick="return false;">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+          <div class="navbar-links">
+        <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="/login">Entrar</a></li>
+            <li><a href="/registo">Registar</a></li>
+        </ul>
+        </div> 
+      </nav>
+
+      <div class="container mt-4">
+          <div class="card">
+            <div class="card-header">
+                Registre-se agora!
+            </div>
+            <div class="card-body">
+                <form action="/auth/registo" method="POST">
+                
+                <div class="input-group">
+                    <span class="input-group-text">Primeiro e ultimo nome</span>
+                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control" name="surname">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordConfirm">Confirmar Password</label>
+                    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
+                </div>
+
+                    <button type="submit" class="btn btn-primary">Registar</button>
+                </form>
+            </div>
+          </div>
+
+          {{#if message }}
+            <h4 class="alert alert-danger mt-4">{{message}}</h4>
+          {{/if}}
+      </div>
+
+<!-- Footer -->
+<footer>Todos os direitos reservados© | 2020 - 2021</footer>
+
+    <!-- Optional JavaScript -->
+    <script src="/redirect.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  </body>
+</html>
