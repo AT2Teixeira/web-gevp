@@ -16,7 +16,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.set('view engine', 'hbs');
+app.set('view engine', 'html');
+app.engine('html', require('hbs').__express);
 
 //Definir as Rotas
 app.use("/", require('./routes/pages'));

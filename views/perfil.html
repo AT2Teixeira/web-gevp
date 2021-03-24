@@ -14,21 +14,25 @@
     <script src="//code-sa1.jivosite.com/widget/8kgtvjrkSC" async></script>
   </head>
   <body>
-      <nav class="navbar">
-          <img src="/logo.png" alt="Logo"/>
-        <a href="#" class="toggle-button" onclick="return false;">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </a>
-          <div class="navbar-links">
-        <ul>
-            <li><a href="/">Início</a></li>
-            <li><a href="/profile">Perfil</a></li>
-            <li><a href="/auth/logout">Sair</a></li>
-        </ul>
-        </div> 
-      </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Flogo.png?v=1616498503733" width="150" height="50" alt="Logo"/>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Início</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/perfil">Perfil<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/logout">Sair</a>
+        </li>
+    </ul>
+  </div>
+</nav>
 
   <div class="container mt-4">
     <div class="row">
@@ -69,6 +73,8 @@
     <!-- Optional JavaScript -->
     <script src="/redirect.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
