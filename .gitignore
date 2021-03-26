@@ -5,3 +5,5 @@ package-lock.json
 .glitch-assets
 
 shrinkwrap.yaml
+
+.glitchdotcom.json
