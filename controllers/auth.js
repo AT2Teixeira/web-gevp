@@ -11,38 +11,71 @@ function gerarToken(params = {}){
 }
 
 exports.cadastro = async (req, res) => {
-  const { email } = req.body;
+   const { name, empresa, email, password, passwordConfirm } = req.body;
   
   try {
-    if (await User.findOne({ email }))
-      return res.status(400).send({ error: "Usuário já cadastrado" })
+    if (!name || !empresa || !email || !password || !passwordConfirm) {
+      return res.status(400).render('cadastro', {
+          message: 'Preencha todos os campos'
+      });
+    } 
+    
+    if (await User.findOne({ email })) {
+      return res.status(400).render('cadastro', { 
+        message: 'Usuário já cadastrado' 
+      });
+    }
+    
+    if (password !== passwordConfirm) {
+      return res.status(400).render('cadastro', {
+          message: 'Palavra pass e confirmar palavra pass não coincidem'
+      }); 
+    }
       
     const user = await User.create(req.body);
     
-    user.password = undefined;
+    user.password = undefined;    
+  
     
-    return res.send({ user, token: gerarToken({ id: user.id }) });
+    res.cookie('jwt', await gerarToken({ id: user.id }));
+    return res.render('cadastro', {
+      message_sucesso: 'Usuário cadastrado com sucesso'
+    });
+    
   } catch (err) {
-    return res.status(400).send({ error: 'Erro no cadastro' })
+    return res.status(400).render('cadastro', { 
+      message: 'Erro no cadastro' 
+    });
   }
 }
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   
+  if (!email || !password) {
+    return res.status(400).render('login', {
+      message: 'Preencha todos os campos'
+    })
+  } 
+  
   const user = await User.findOne({ email }).select('+password');
   
   if (!user){
-    return res.status(400).send({ error: 'Usuário não encontrado' })
+    return res.status(400).render('login', { 
+      message: 'Senha ou email inválidos' 
+    });
   }
   
   if (!await bcrypt.compare(password, user.password)) {
-    return res.status(400).send({ error: 'Senha inválida' })
+    return res.status(400).render('login', { 
+      message: 'Senha ou email inválidos' 
+    });
   }
   
   user.password = undefined;
   
-  res.status(200).send({ user, token: gerarToken({ id: user.id }) });
+  res.cookie('jwt', await gerarToken({ id: user.id }));
+  res.status(200).redirect("/perfil");
 }
 
 exports.esqueceu_password = async (req, res) => {
@@ -69,7 +102,7 @@ exports.esqueceu_password = async (req, res) => {
     
     mailer.sendMail({
       to: email,
-      from: 'andre.s.teixeira21@hotmail.com',
+      from: 'CEO',
       template: 'auth/esqueceu_password',
       context: { token }
     }, (err) => {
