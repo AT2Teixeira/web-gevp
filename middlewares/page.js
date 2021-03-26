@@ -5,11 +5,9 @@ module.exports = async (req, res, next) => {
   if(req.cookies.jwt) {
       try {
         //1) Verifica o token
-        const decoded = (jwt.verify)(req.cookies.jwt,
+        const decoded = await (jwt.verify)(req.cookies.jwt,
         process.env.JWT_SECRET
         );
-  
-        //console.log(decoded);
   
         //2) Verificar se o utilizador ainda existe
         const user = await User.findById(decoded.id);
