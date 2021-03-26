@@ -11,6 +11,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
     <script src="//code-sa1.jivosite.com/widget/8kgtvjrkSC" async></script>
   </head>
   <body>
@@ -33,7 +34,7 @@
     </ul>
   </div>
 </nav>
-
+    
       <div class="container mt-4">
           <div class="card">
             <div class="card-header">
@@ -71,17 +72,41 @@
                 </form>
             </div>
           </div>
-
-          {{#if message }}
-            <h4 class="alert alert-danger mt-4">{{message}}</h4>
-          {{/if}}
       </div>
-
 <!-- Footer -->
-<footer>Todos os direitos reservados© | 2020 - 2021</footer>
-
+<footer class="bg-dark text-center text-white">
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    Todos os direitos reservados© | 2020 - 2021
+  </div>
+</footer>
+    
     <!-- Optional JavaScript -->
     <script src="/redirect.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    {{#if message}}
+    <script>
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: '{{message}}',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      })
+    </script>
+    {{/if}}
+    {{#if message_sucesso}}
+    <script>
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{message_sucesso}}',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      })
+    </script>
+    {{/if}}
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -1,14 +1,21 @@
 const express = require('express');
-const authMiddleware = require('../middlewares/auth');
+const pageMiddleware = require('../middlewares/page');
+const pageController = require('../controllers/pages');
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.send({ ok: true });
-});
+router.get("/", pageMiddleware, pageController.index);
 
-router.get("/painel", authMiddleware, (req, res) => {
-  res.render('/painel');
-})
+router.get("/cadastro", pageMiddleware, pageController.cadastro);
+
+router.get("/carrinho", pageMiddleware, pageController.carrinho);
+
+router.get("/login", pageMiddleware, pageController.login);
+
+router.get("/loja", pageMiddleware, pageController.loja);
+
+router.get("/painel", pageMiddleware, pageController.painel);
+
+router.get("/perfil", pageMiddleware, pageController.perfil);
 
 module.exports = router;

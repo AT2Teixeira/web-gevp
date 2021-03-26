@@ -21,6 +21,7 @@ app.engine('html', require('hbs').__express);
 
 //Definir as Rotas
 app.use("/", require('./routes/pages'));
+app.use("/projects", require('./routes/projects'));
 app.use("/auth", require('./routes/auth'));
 
 //Definir erro ao não encontrar a página
