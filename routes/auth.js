@@ -11,4 +11,6 @@ router.post("/esqueceu_password", authController.esqueceu_password);
 
 router.post("/resetar_password/:tokenId", authController.resetar_password);
 
+router.get("/logout", authController.logout);
+
 module.exports = router;

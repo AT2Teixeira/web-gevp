@@ -23,6 +23,7 @@ app.engine('html', require('hbs').__express);
 app.use("/", require('./routes/pages'));
 app.use("/projects", require('./routes/projects'));
 app.use("/auth", require('./routes/auth'));
+app.use("/relatorios", require('./routes/relatorios'));
 
 //Definir erro ao não encontrar a página
 app.get("*", (req, res) => {

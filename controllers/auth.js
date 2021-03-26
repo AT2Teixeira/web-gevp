@@ -38,9 +38,7 @@ exports.cadastro = async (req, res) => {
   
     
     res.cookie('jwt', await gerarToken({ id: user.id }));
-    return res.render('cadastro', {
-      message_sucesso: 'Usuário cadastrado com sucesso'
-    });
+    return res.redirect('/perfil')
     
   } catch (err) {
     return res.status(400).render('cadastro', { 
@@ -148,4 +146,18 @@ exports.resetar_password = async (req, res) => {
   } catch {
     res.status(400).send({ error: 'Erro a tentar alterar passoword, tente novamente' });
   }
+}
+
+exports.logout = async (req, res) => {
+  try {
+    res.cookie('jwt', 'logout', {
+      expires: new Date(Date.now() + 1000),
+      httpOnly: true
+    });
+
+    res.status(200).redirect('/');
+  } catch (err) {
+    return res.status(400).send({ error: 'Erro ao realizar o logout, tente 23novamente' });
+  }
+
 }

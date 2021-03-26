@@ -34,16 +34,20 @@ exports.loja = async (req, res) => {
 }
 
 exports.painel = async (req, res) => {
-  res.render('painel');
-  /*
   if(req.user) {
     res.render('painel', {
-      user: req.user
+      user: req.user,
+      relatorio1: req.relatorio1,
+      relatorio2: req.relatorio2,
+      relatorio3: req.relatorio3,
+      relatorio4: req.relatorio4,
+      relatorio5: req.relatorio5,
+      relatorio6: req.relatorio6,
+      relatorio_null: req.relatorio_null
     });
   } else {
     res.redirect('/login');
   }
-  */
 }
 
 exports.perfil = async (req, res) => {
