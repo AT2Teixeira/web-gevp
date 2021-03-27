@@ -1,5 +1,5 @@
-const Project = require('../models/project');
 const jwt = require('jsonwebtoken');
+const Project = require('../models/project');
 const User = require('../models/user');
 
 exports.criar = async (req, res) => {  
@@ -19,6 +19,24 @@ exports.criar = async (req, res) => {
         relatorio_null: req.relatorio_null
       })
     }
+    
+    let user = req.user
+    const projects = await Project.find({user: user.id});
+    
+    if (projects[5]) {
+      return res.status(400).render('painel', { 
+        message: 'Limite máximo de relatórios (máx: 6)', 
+        user: req.user,
+        relatorio1: req.relatorio1,
+        relatorio2: req.relatorio2,
+        relatorio3: req.relatorio3,
+        relatorio4: req.relatorio4,
+        relatorio5: req.relatorio5,
+        relatorio6: req.relatorio6,
+        relatorio_null: req.relatorio_null
+      });
+    }
+    
     
     const project = await Project.create({ title, description, user: req.user });
     

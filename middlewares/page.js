@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
         }
         
         // 3) Verifica os projetos
-        const projects = await Project.find().populate(['user']);
+        const projects = await Project.find({user: user._id});
         
         if (projects < 1) {
           req.relatorio_null = true
