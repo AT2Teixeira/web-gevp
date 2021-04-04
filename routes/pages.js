@@ -8,6 +8,8 @@ router.get("/", pageMiddleware, pageController.index);
 
 router.get("/cadastro", pageMiddleware, pageController.cadastro);
 
+router.get("/esqueceu_password", pageMiddleware, pageController.esqueceu_password);
+
 router.get("/carrinho", pageMiddleware, pageController.carrinho);
 
 router.get("/login", pageMiddleware, pageController.login);

@@ -80,11 +80,19 @@ exports.login = async (req, res) => {
 exports.esqueceu_password = async (req, res) => {
   const { email } = req.body;
   
+  if (!email) {
+    return res.status(400).render('esqueceu_password', {
+      message: 'Preencha o campo'
+    })
+  } 
+  
   try {
     const user = await User.findOne({ email });
     
     if (!user) {
-      return res.status(400).send({ error: 'Usuário não encontrado' })
+      return res.status(400).render('esqueceu_password', { 
+        message: 'Email não encontrado' 
+      });
     }
     
     const token = crypto.randomBytes(20).toString('hex');
@@ -101,20 +109,26 @@ exports.esqueceu_password = async (req, res) => {
     
     mailer.sendMail({
       to: email,
-      from: 'CEO',
+      from: 'No-Reply',
       template: 'auth/esqueceu_password',
       context: { token }
     }, (err) => {
       if (err) {
         console.log(err);
-        return res.status(400).send({ error: 'Não foi possível enviar o email de recuperação de senha' });
+        return res.status(400).render('esqueceu_password', { 
+          message: 'Não foi possível enviar o email' 
+        });
       }
-      return res.send();
+      return res.status(200).render('esqueceu_password', { 
+          message_sucesso: 'Email enviado com sucesso, por favor verifique a sua caixa' 
+        });
     });
     
   } catch (err) {
     console.log(err);
-    res.status(400).send({ error: 'Erro a tentar recuperar passoword, tente novamente' });
+    res.status(400).render('esqueceu_password', { 
+      message: 'Erro a tentar recuperar passoword, tente novamente' 
+    });
   }
 }
 
