@@ -3,17 +3,8 @@
   <head>
     <title>Perfil</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="icon" href="/icon.png"/>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/style.css">
+    {{> header}}
     <link rel="stylesheet" href="/dashboard.css">
-    <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
-    <script src="//code-sa1.jivosite.com/widget/8kgtvjrkSC" async></script>
   </head>
 
   <body>
@@ -33,7 +24,7 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link active" href="/painel">
                   <span data-feather="home"></span>
                   Dashboard <span class="sr-only">(atual)</span>
                 </a>
@@ -57,7 +48,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/relatorios">
                   <span data-feather="bar-chart-2"></span>
                   Relatórios
                 </a>
@@ -72,49 +63,49 @@
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
               <span>Relatórios salvos</span>
-              <a class="d-flex align-items-center text-muted" href="#" onclick="gerarRelatorio()">
-                <span data-feather="plus-circle"></span>
+              <a class="d-flex align-items-center text-muted">
+                <span data-feather="lock"></span>
               </a>
             </h6>
             <ul class="nav flex-column mb-2">
               <li class="nav-item" id="containerRelatorios">
                 {{#if relatorio1}}
-                <a class="nav-link" style="float: right;" href="/relatorios/del/{{relatorio1.id}}"><span data-feather="trash"></span></a>
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio1.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio1.title}}
                   </a>
                 {{/if}}
                 {{#if relatorio2}}
-                <a class="nav-link" style="float: right;" href="/relatorios/del/{{relatorio3.id}}"><span data-feather="trash"></span></a>
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio2.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio2.title}}
                   </a>
                 {{/if}}
                 {{#if relatorio3}}
-                <a class="nav-link" style="float: right;" href="/relatorios/del/{{relatorio3.id}}"><span data-feather="trash"></span></a>
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio3.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio3.title}}
                   </a>
                 {{/if}}
                 {{#if relatorio4}}
-                <a class="nav-link" style="float: right;" href="/relatorios/del/{{relatorio4.id}}"><span data-feather="trash"></span></a>
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio4.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio4.title}}
                   </a>
                 {{/if}}
                 {{#if relatorio5}}
-                <a class="nav-link" style="float: right;" href="/relatorios/del/{{relatorio5.id}}"><span data-feather="trash"></span></a>
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio5.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio5.title}}
                   </a>
                 {{/if}}
                 {{#if relatorio6}}
-                <a class="nav-link" style="float: right;" href="/relatorios/del/{{relatorio6.id}}"><span data-feather="trash"></span></a>
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio6.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio6.title}}
@@ -140,46 +131,14 @@
               </div>
             </div>
           </div>
-
+          
           <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-          <h2>Título da seção</h2>
-          <div class="table-responsive">
-            <table class="table table-striped table-sm">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Cabeçalho</th>
-                  <th>Cabeçalho</th>
-                  <th>Cabeçalho</th>
-                  <th>Cabeçalho</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </main>
       </div>
     </div>
     <!-- Principal JavaScript do Bootstrap
     ================================================== -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    {{> js}}
     <script>
       function gerarRelatorio() {
       Swal.fire({
@@ -196,6 +155,12 @@
       })
     }
     </script>
+    
+    {{#if relatorio_visualizar}}
+    <script>
+      Swal.fire('{{relatorio_visualizar.description}}')
+    </script>
+    {{/if}}
     
     {{#if message}}
     <script>

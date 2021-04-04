@@ -27,7 +27,7 @@ module.exports = async (req, res, next) => {
         let array = [];
         
         projects.map((val) => {
-          array.push({title: val.title, id: val._id});
+          array.push({id: val._id, title: val.title, description: val.description, createdAt: val.createdAt});
         });
         
         if (projects) {

@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const crypto = require('crypto');
 const mailer = require('../modules/mailer')
+const fetch = require('node-fetch');
 
 function gerarToken(params = {}){
   return jwt.sign(params, process.env.JWT_SECRET, {
