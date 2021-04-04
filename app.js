@@ -1,6 +1,8 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const hbs = require('hbs')
 
 const app = express();
 
@@ -18,6 +20,7 @@ app.use(cookieParser());
 
 app.set('view engine', 'html');
 app.engine('html', require('hbs').__express);
+hbs.registerPartials(path.join(__dirname + '/views/templates'))
 
 //Definir as Rotas
 app.use("/", require('./routes/pages'));
@@ -27,7 +30,7 @@ app.use("/relatorios", require('./routes/relatorios'));
 
 //Definir erro ao não encontrar a página
 app.get("*", (req, res) => {
-    res.render("404");
+    res.status(404).render("404");
 })
 
 const porta = 8080
