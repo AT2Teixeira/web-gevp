@@ -109,9 +109,10 @@ exports.esqueceu_password = async (req, res) => {
     
     mailer.sendMail({
       to: email,
-      from: 'No-Reply',
+      from: '"Noreply" <web.gevp@gmail.com>',
+      subject: 'Recuperação de Senha',
       template: 'auth/esqueceu_password',
-      context: { token }
+      context: { token, email }
     }, (err) => {
       if (err) {
         console.log(err);
