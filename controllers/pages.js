@@ -15,6 +15,14 @@ exports.cadastro = async (req, res) => {
   }
 }
 
+exports.esqueceu_password = async (req, res) => {
+  if(!req.user) {
+    res.render('esqueceu_password')
+  } else {
+    res.redirect('/');
+  }
+}
+
 exports.carrinho = async (req, res) => {
   res.render('carrinho');
 }
