@@ -9,9 +9,9 @@ router.post("/login", authController.login);
 
 router.post("/esqueceu_password", authController.esqueceu_password);
 
-router.get("/esqueceu_password/:tokenId/:emailId", authController.esqueceu_password)
+router.get("/alterar_password/:tokenId/:email", authController.alterar_password);
 
-router.post("/resetar_password/:tokenId", authController.resetar_password);
+router.post("/alterar_password_post", authController.alterar_password_post);
 
 router.get("/logout", authController.logout);
 

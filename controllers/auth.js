@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const crypto = require('crypto');
 const mailer = require('../modules/mailer')
-const fetch = require('node-fetch');
+const sessionstorage = require('sessionstorage');
 
 function gerarToken(params = {}){
   return jwt.sign(params, process.env.JWT_SECRET, {
@@ -133,34 +133,101 @@ exports.esqueceu_password = async (req, res) => {
   }
 }
 
-exports.resetar_password = async (req, res) => {
-  const { email, token, password } = req.body;
+exports.alterar_password = async (req, res) => {
+  const token = req.params.tokenId;
+  const email = req.params.email;
   
   try {
     const user = await User.findOne({ email }).select('+passwordResetExpires passwordResetToken');
     
     if (!user) {
-      return res.status(400).send({ error: 'Usuário não encontrado' })
+      return res.status(400).render('esqueceu_password', { 
+        message: 'Usuário não encontrado' 
+      });
     }
     
     if (token !== user.passwordResetToken) {
-      res.status(400).send({ error: 'Token inválido' });
+      res.status(400).render('esqueceu_password', { 
+        message: 'Token inválido' 
+      });
     }
     
     const now = new Date()
     
     if (now > user.passwordResetExpires) {
-      res.status(400).send({ error: 'Token expirado, por favor gere um novo' });
+      res.status(400).render('esqueceu_password', { 
+        message: 'Token expirado, por favor gere um novo' 
+      });
+    }
+    
+    sessionstorage.setItem("token_email", { 
+      token,
+      email
+    });
+    
+    res.status(200).render('recuperar_password');
+    
+  } catch {
+    res.status(400).render('esqueceu_password', { 
+      message: 'Erro a tentar alterar passoword, tente novamente' 
+    });
+  }
+}
+
+exports.alterar_password_post = async (req, res) => {
+  const { password, passwordConfirm } = req.body;
+  
+  try {
+    const { token, email } = sessionstorage.getItem("token_email")
+    
+    if (!token || !email) {
+      return res.status(400).render('recuperar_password', { 
+        message: 'Token ou email mal formatados' 
+      });
+    }
+    
+    const user = await User.findOne({ email }).select('+passwordResetExpires passwordResetToken');
+    
+    if (!user) {
+      return res.status(400).render('recuperar_password', { 
+        message: 'Usuário não encontrado' 
+      });
+    }
+    
+    if (token !== user.passwordResetToken) {
+      res.status(400).render('recuperar_password', { 
+        message: 'Token inválido' 
+      });
+    }
+    
+    const now = new Date()
+    
+    if (now > user.passwordResetExpires) {
+      res.status(400).render('recuperar_password', { 
+        message: 'Token expirado, por favor gere um novo' 
+      });
+    }
+    
+    if (password !== passwordConfirm) {
+      return res.status(400).render('recuperar_password', {
+          message: 'Palavra pass e confirmar palavra pass não coincidem'
+      }); 
     }
     
     user.password = password;
+    user.passwordResetToken = null;
+    user.passwordResetExpires = null;
     
     await user.save();
     
-    res.send()
+    res.status(200).render('recuperar_password', {
+      message_sucesso: 'Password alterada com sucesso, volte a realizar o login para entrar na sua conta'
+    });
     
   } catch {
-    res.status(400).send({ error: 'Erro a tentar alterar passoword, tente novamente' });
+    res.status(400).render('recuperar_password', { 
+      message: 'Erro a tentar alterar passoword, tente novamente' 
+    });
   }
 }
 
