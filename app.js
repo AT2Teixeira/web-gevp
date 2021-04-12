@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const hbs = require('hbs')
+const hbs = require('hbs');
 
 const app = express();
 
@@ -24,9 +24,9 @@ hbs.registerPartials(path.join(__dirname + '/views/templates'))
 
 //Definir as Rotas
 app.use("/", require('./routes/pages'));
-app.use("/projects", require('./routes/projects'));
 app.use("/auth", require('./routes/auth'));
 app.use("/relatorios", require('./routes/relatorios'));
+app.use("/projects", require('./routes/projects'));
 
 //Definir erro ao não encontrar a página
 app.get("*", (req, res) => {
