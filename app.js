@@ -24,7 +24,9 @@ hbs.registerPartials(path.join(__dirname + '/views/templates'))
 
 //Definir as Rotas
 app.use("/", require('./routes/pages'));
+app.use("/admin", require('./routes/admin'))
 app.use("/auth", require('./routes/auth'));
+app.use("/loja", require('./routes/loja'));
 app.use("/relatorios", require('./routes/relatorios'));
 app.use("/projects", require('./routes/projects'));
 

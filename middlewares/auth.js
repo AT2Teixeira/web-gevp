@@ -10,9 +10,9 @@ module.exports = async (req, res, next) => {
           
           return next();
       } catch (error) {
-        return res.send({ error: 'Token error' })
+        return res.send({ error: 'Token erro' })
       }
     } else {
-      res.send({ error: 'Token not found' })
+      res.send({ error: 'Token não encontrado' })
     }
 }
