@@ -148,10 +148,10 @@
                     <p class="card-text">{{description}}</p>
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-primary" href="/produtos/{{id}}" role="button">Ver detalhes</a>
+                    <a class="btn btn-primary" href="/produtos/{{id}}" role="button"><span data-feather="search"></span> Ver detalhes</a>
                     <form action="/loja/adicionar-ao-carrinho" method="POST">
                         <input type="hidden" name="id" value="{{id}}">
-                        <button onclick="adcionadoFunction()" type="submit" class="btn btn-primary">Adicionar ao carrinho</button>
+                        <button onclick="adcionadoFunction()" type="submit" class="btn btn-primary"><span data-feather="plus-square"></span> Adicionar ao carrinho</button>
                     </form>
                 </div>
             </div>
