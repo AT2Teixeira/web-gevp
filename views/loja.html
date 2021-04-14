@@ -127,9 +127,9 @@
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 {{#if perms.admin}}
-                <a href="/adicionar-produto"><button class="btn btn-sm btn-outline-secondary"><span data-feather="file-plus"></span> Adicionar produto</button></a>
-                <button onclick="editarFunction()" class="btn btn-sm btn-outline-secondary"><span data-feather="file-plus"></span> Editar produto</button>
-                <button onclick="eliminarFunction()" class="btn btn-sm btn-outline-secondary"><span data-feather="file-plus"></span> Eliminar produto</button>
+                <button onclick="adicionarFunction()" class="btn btn-sm btn-outline-success"><span data-feather="file-plus"></span> Adicionar produto</button>
+                <button onclick="editarFunction()" class="btn btn-sm btn-outline-warning"><span data-feather="edit"></span> Editar produto</button>
+                <button onclick="eliminarFunction()" class="btn btn-sm btn-outline-danger"><span data-feather="file-minus"></span> Eliminar produto</button>
                 {{/if}}
                 <a href="/carrinho"><button class="btn btn-sm btn-outline-secondary"><span data-feather="shopping-cart"></span> Carrinho</button></a>
               </div>
@@ -164,6 +164,85 @@
     <!-- Principal JavaScript do Bootstrap
     ================================================== -->
     {{> js}}
+    <script>
+      function adicionarFunction() {
+      Swal.fire({
+      title: 'Adicionar produto',
+      html: `
+      <form action="/admin/adicionar-produto" method="POST">
+      <div class="form-group">
+          <label for="title">Título</label>
+          <input class="form-control" id="title" name="title">
+      </div>
+      <div class="form-group">
+          <label for="price">Preço</label>
+          <input class="form-control" id="price" name="price">
+      </div>
+      <div class="form-group">
+          <label for="imageURL">Imagem URL</label>
+          <input class="form-control" id="imageURL" name="imageURL">
+      </div>
+      <div class="form-group">
+          <label for="description">Descrição</label>
+          <textarea class="form-control" name="description" id="description"></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submeter</button>
+      </form>
+      `,
+      confirmButtonText: 'Cancelar'
+      })
+    }
+    </script>
+    <script>
+      function editarFunction() {
+      Swal.fire({
+      title: 'Editar produto',
+      html: `
+      <form action="/relatorios/add" method="POST">
+      <div class="form-group">
+          <label for="title">Título</label>
+          <input class="form-control" id="title" name="title">
+      </div>
+      <div class="form-group">
+          <label for="price">Preço</label>
+          <input class="form-control" id="price" name="price">
+      </div>
+      <div class="form-group">
+          <label for="imageURL">Imagem URL</label>
+          <input class="form-control" id="imageURL" name="imageURL">
+      </div>
+      <div class="form-group">
+          <label for="description">Descrição</label>
+          <textarea class="form-control" name="description" id="description"></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submeter</button>
+      </form>
+      `,
+      confirmButtonText: 'Cancelar'
+      })
+    }
+    </script>
+    <script>
+      function eliminarFunction() {
+      Swal.fire({
+      title: 'Eliminar produto',
+      html: `
+      <form action="/relatorios/add" method="POST">
+      <div class="form-group">
+          <label for="description">Insira o ID</label>
+          <input class="form-control" name="id" id="id">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submeter</button>
+      </form>
+      `,
+      confirmButtonText: 'Cancelar'
+      })
+    }
+    </script>
+    
     
     <script>
       function adcionadoFunction() {
