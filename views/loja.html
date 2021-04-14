@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Perfil</title>
+    <!-- Required meta tags -->
+    {{> header}}
+    <link rel="stylesheet" href="/dashboard.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/painel">{{user.empresa}}</a>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="/auth/logout"><span class="badge badge-pill badge-danger">Sair</span></a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="/painel">
+                  <span data-feather="home"></span>
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file"></span>
+                  Pedidos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/loja">
+                  <span data-feather="shopping-cart"></span>
+                  Produtos <span class="sr-only">(atual)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="users"></span>
+                  Clientes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/relatorios">
+                  <span data-feather="bar-chart-2"></span>
+                  Relatórios
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Integrações
+                </a>
+              </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Relatórios salvos</span>
+              <a class="d-flex align-items-center text-muted">
+                <span data-feather="lock"></span>
+              </a>
+            </h6>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item" id="containerRelatorios">
+                {{#if relatorio1}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio1.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio1.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio2}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio2.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio2.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio3}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio3.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio3.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio4}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio4.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio4.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio5}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio5.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio5.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio6}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio6.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio6.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio_null}}
+                <p class="alert alert-warning" role="alert">
+                  Nenhum relatório criado
+                </p>
+                {{/if}}
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Produtos</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                {{#if perms.admin}}
+                <button onclick="adicionarFunction()" class="btn btn-sm btn-outline-success"><span data-feather="file-plus"></span> Adicionar produto</button>
+                <button onclick="editarFunction()" class="btn btn-sm btn-outline-warning"><span data-feather="edit"></span> Editar produto</button>
+                <button onclick="eliminarFunction()" class="btn btn-sm btn-outline-danger"><span data-feather="file-minus"></span> Eliminar produto</button>
+                {{/if}}
+                <a href="/carrinho"><button class="btn btn-sm btn-outline-secondary"><span data-feather="shopping-cart"></span> Carrinho</button></a>
+              </div>
+            </div>
+          </div>
+          
+          {{#each prods}}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="{{imageURL}}" alt="Imagem do Produto"></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#">{{title}}</a>
+                    </h4>
+                    <h5>€ {{price}}</h5>
+                    <p class="card-text">{{description}}</p>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary" href="/produtos/{{id}}" role="button"><span data-feather="search"></span> Ver detalhes</a>
+                    <form action="/loja/adicionar-ao-carrinho" method="POST">
+                        <input type="hidden" name="id" value="{{id}}">
+                        <button onclick="adcionadoFunction()" type="submit" class="btn btn-primary"><span data-feather="plus-square"></span> Adicionar ao carrinho</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+          {{/each}}
+          
+        </main>
+      </div>
+    </div>
+    <!-- Principal JavaScript do Bootstrap
+    ================================================== -->
+    {{> js}}
+    <script>
+      function adicionarFunction() {
+      Swal.fire({
+      title: 'Adicionar produto',
+      html: `
+      <form action="/admin/adicionar-produto" method="POST">
+      <div class="form-group">
+          <label for="title">Título</label>
+          <input class="form-control" id="title" name="title">
+      </div>
+      <div class="form-group">
+          <label for="price">Preço</label>
+          <input class="form-control" id="price" name="price">
+      </div>
+      <div class="form-group">
+          <label for="imageURL">Imagem URL</label>
+          <input class="form-control" id="imageURL" name="imageURL">
+      </div>
+      <div class="form-group">
+          <label for="description">Descrição</label>
+          <textarea class="form-control" name="description" id="description"></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submeter</button>
+      </form>
+      `,
+      confirmButtonText: 'Cancelar'
+      })
+    }
+    </script>
+    <script>
+      function editarFunction() {
+      Swal.fire({
+      title: 'Editar produto',
+      html: `
+      <form action="/relatorios/add" method="POST">
+      <div class="form-group">
+          <label for="title">Título</label>
+          <input class="form-control" id="title" name="title">
+      </div>
+      <div class="form-group">
+          <label for="price">Preço</label>
+          <input class="form-control" id="price" name="price">
+      </div>
+      <div class="form-group">
+          <label for="imageURL">Imagem URL</label>
+          <input class="form-control" id="imageURL" name="imageURL">
+      </div>
+      <div class="form-group">
+          <label for="description">Descrição</label>
+          <textarea class="form-control" name="description" id="description"></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submeter</button>
+      </form>
+      `,
+      confirmButtonText: 'Cancelar'
+      })
+    }
+    </script>
+    <script>
+      function eliminarFunction() {
+      Swal.fire({
+      title: 'Eliminar produto',
+      html: `
+      <form action="/relatorios/add" method="POST">
+      <div class="form-group">
+          <label for="description">Insira o ID</label>
+          <input class="form-control" name="id" id="id">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submeter</button>
+      </form>
+      `,
+      confirmButtonText: 'Cancelar'
+      })
+    }
+    </script>
+    
+    
+    <script>
+      function adcionadoFunction() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'success',
+          title: 'O produto foi adicionado ao carrinho'
+        })
+      }
+    </script>
+    
+    {{#if relatorio_visualizar}}
+    <script>
+      Swal.fire('{{relatorio_visualizar.description}}')
+    </script>
+    {{/if}}
+    
+    
+    <!-- Ícones -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+  </body>
+</html>

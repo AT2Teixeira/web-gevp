@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Perfil</title>
+    <!-- Required meta tags -->
+    {{> header}}
+    <link rel="stylesheet" href="/dashboard.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/painel">{{user.empresa}}</a>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="/auth/logout"><span class="badge badge-pill badge-danger">Sair</span></a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="/painel">
+                  <span data-feather="home"></span>
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file"></span>
+                  Pedidos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/loja">
+                  <span data-feather="shopping-cart"></span>
+                  Produtos <span class="sr-only">(atual)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="users"></span>
+                  Clientes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/relatorios">
+                  <span data-feather="bar-chart-2"></span>
+                  Relatórios
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Integrações
+                </a>
+              </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Relatórios salvos</span>
+              <a class="d-flex align-items-center text-muted">
+                <span data-feather="lock"></span>
+              </a>
+            </h6>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item" id="containerRelatorios">
+                {{#if relatorio1}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio1.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio1.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio2}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio2.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio2.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio3}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio3.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio3.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio4}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio4.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio4.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio5}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio5.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio5.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio6}}
+                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio6.id}}"><span data-feather="search"></span></a>
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    {{relatorio6.title}}
+                  </a>
+                {{/if}}
+                {{#if relatorio_null}}
+                <p class="alert alert-warning" role="alert">
+                  Nenhum relatório criado
+                </p>
+                {{/if}}
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Produtos</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                <button class="btn btn-sm btn-outline-secondary"><span data-feather="send"></span> Compartilhar</button>
+                <button class="btn btn-sm btn-outline-secondary"><span data-feather="download"></span> Exportar</button>
+              </div>
+            </div>
+          </div>
+          
+          {{#if cart}}
+            <h2>Shopping Cart Detail</h2>
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Título</th>
+                          <th scope="col">Preço</th>
+                          <th scope="col">Quantidade</th>
+                          <th scope="col"></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {{#each cart.products}}
+                          <tr>
+                              <th scope="row">
+                                  <%= i+1%>
+                              </th>
+                              <td>
+                                  <%= product.title%>
+                              </td>
+                              <td>
+                                  <%= product.price%>
+                              </td>
+                              <td>
+                                  <%= product.qty%>
+                              </td>
+                              <td>
+                                  <form action="/delete-cart" method="POST">
+                                      <input type="hidden" name="prodId" value="<%= product.id%>">
+                                      <button type="submit" class="btn btn-primary">Delete</button>
+                                  </form>
+                              </td>
+                          </tr>
+                          <%}%>
+                              <tr>
+                                  <td>Total Price: </td>
+                                  <td colspan="4">
+                                      <%= cart.totalPrice%>
+                                  </td>
+                              </tr>
+                  </tbody>
+              </table>
+          {{/each}}
+          {{else}}
+            <h2>Você ainda não possui nenhum produto no carrinho</h2>
+          {{/if}}
+          
+        </main>
+      </div>
+    </div>
+    <!-- Principal JavaScript do Bootstrap
+    ================================================== -->
+    {{> js}}
+    <script>
+      function gerarRelatorio() {
+      Swal.fire({
+      title: 'Criar relatório',
+      html: `
+      <form action="/relatorios/add" method="POST">
+      <input type="text" name="title" id="title" class="swal2-input" placeholder="Título">
+      <input type="text" name="description" id="description" class="swal2-input" placeholder="Descrição">
+      
+      <button type="submit" class="btn btn-primary">Criar</button>
+      </form>
+      `,
+      confirmButtonText: 'Cancelar'
+      })
+    }
+    </script>
+    
+    {{#if relatorio_visualizar}}
+    <script>
+      Swal.fire('{{relatorio_visualizar.description}}')
+    </script>
+    {{/if}}
+    
+    {{#if message}}
+    <script>
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'error',
+        title: '{{message}}'
+      })
+    </script>
+    {{/if}}
+    
+    <!-- Ícones -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+  </body>
+</html>

@@ -39,7 +39,13 @@ module.exports = async (req, res, next) => {
           req.relatorio6 = array[5]
         }
 
-          req.user = user
+        let perms = new Object()
+        if (user._id == '605dcdc9e3a81403950ce595') {
+          perms.admin = true
+        }
+          
+        req.user = user
+        req.permissoes = perms
         
           return next();
       } catch (error) {
