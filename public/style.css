@@ -8,6 +8,19 @@ html {
   scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+width:10px;
+height: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+background:#111;
+}
+ 
+::-webkit-scrollbar-thumb {
+background: #00BF85;
+}
+
 .jumbotron {
     background-color: #e9ecef;
 }
@@ -47,6 +60,21 @@ body > footer > ul.list-unstyled.list-inline.text-center.py-2 > li:nth-child(2) 
   border: none
 }
 
-body > footer > div.container.text-center.text-md-left > div > div:nth-child(3){
-  text-decoration: none
+body > footer > ul > li:nth-child(2) > a {
+  background: #00BF85;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #111
+}
+
+body > footer > div.footer-copyright.text-center.py-3 > a {
+  text-decoration: none;
+  color: #00BF85
+}
+
+.page-footer .container a {
+  text-decoration: none;
+  color: #00BF85
 }

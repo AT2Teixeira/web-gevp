@@ -4,6 +4,8 @@
     <title>Registo</title>
     <!-- Required meta tags -->
     {{> header}}
+    <link rel="stylesheet" href="/form.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
   </head>
   <body>
 <nav class="navbar navbar-expand-lg navbar-dark">
@@ -26,44 +28,39 @@
   </div>
 </nav>
     
-      <div class="container mt-4 pb-5">
-          <div class="card">
-            <div class="card-header">
-                Cadastre-se agora!
-            </div>
-            <div class="card-body">
-                <form action="/auth/cadastro" method="POST">
-                
-                <div class="form-group">
-                    <label for="name">Primeiro e último nome</label>
-                    <input type="text" class="form-control" id="name" name="name">
-                </div>
-                  
-                <div class="form-group">
-                    <label for="empresa">Nome da empresa</label>
-                    <input type="text" class="form-control" id="empresa" name="empresa">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
-                </div>
-
-                <div class="form-group">
-                    <label for="passwordConfirm">Confirmar password</label>
-                    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
-                </div>
-
-                    <button type="submit" class="btn btn-primary">Registar</button>
-                </form>
-            </div>
+    <div class="modal-dialog text-center pb-5">
+      <div class="col-sm-8 main-section">
+        <div class="modal-content">
+          
+          <div class="col-12 user-img">
+            <img src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Fface.png?v=1618742164594">
           </div>
+          
+          <form class="col-12" action="/auth/cadastro" method="POST">
+            <div class="form-group" id="um-cadastro">
+              <input type="text" class="form-control" name="name" placeholder="Nome de utilizador">
+            </div>
+            <div class="form-group" id="dois-cadastro">
+              <input type="text" class="form-control" name="empresa" placeholder="Nome da empresa">
+            </div>
+            <div class="form-group" id="tres-cadastro">
+              <input type="email" class="form-control" name="email" placeholder="Email de contacto">
+            </div>
+            <div class="form-group" id="quatro-cadastro">
+              <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <div class="form-group" id="cinco-cadastro">
+              <input type="password" class="form-control" name="passwordConfirm" placeholder="Confirme a Password">
+            </div>
+            <button type="submit" class="btn">
+              <span data-feather="log-in"></span>Cadastrar
+            </button>
+          </form>
+          
+        </div>
       </div>
+    </div>
+    
 <!-- Footer -->
 {{> footer}}
     
