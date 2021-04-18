@@ -1,0 +1,176 @@
+.navbar {
+  z-index: 1000;
+}
+
+.mid {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center
+}
+
+.mid video {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.mid .hero {
+  position: relative;
+}
+
+.mid .hero p {
+  width: 55%;
+  font-size: 1.1rem;
+  letter-spacing: 0.2px;
+  padding-bottom: 1rem 
+}
+
+.mid .hero a {
+  background: #00BF85;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  text-decoration: none
+}
+
+.mid .hero a:hover {
+  background: #fff;
+}
+
+.sobre {
+  background: #000;
+}
+
+.sobre .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: auto
+}
+
+.sobre .text h6 {
+  color: #00BF7F;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 2px
+}
+
+.sobre .text h2 {
+  color: #F7F5F4;
+  font-weight: 700;
+  font-size: 2.7rem
+}
+
+.sobre .text p {
+  color: #F7F5F4;
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px
+}
+
+.sobre .text a {
+  background: #00BF85;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #111
+}
+
+.servico .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: auto
+}
+
+.servico .text h6 {
+  color: #00BF7F;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 2px
+}
+
+.servico .text h2 {
+  color: #111;
+  font-weight: 700;
+  font-size: 2.7rem
+}
+
+.servico .text p {
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px
+}
+
+.servico .text a {
+  background: #111;
+  font-weight: 500;
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #fff
+}
+
+.garantimos {
+  background: #000
+}
+
+.garantimos .one {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: 7px
+}
+
+.equipa .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: auto
+}
+
+.equipa .text h6 {
+  color: #00BF7F;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 2px
+}
+
+.equipa .text h2 {
+  color: #111;
+  font-weight: 700;
+  font-size: 2.7rem
+}
+
+.equipa .text p {
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px
+}
+
+.equipa .text a {
+  background: #111;
+  font-weight: 500;
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #fff
+}

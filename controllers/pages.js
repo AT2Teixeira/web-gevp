@@ -7,23 +7,6 @@ exports.index = async (req, res) => {
   });
 }
 
-exports.adicionar_produto = async (req, res) => {
-  if(req.user) {    
-    res.render('adicionar-produto', {
-      user: req.user,
-      relatorio1: req.relatorio1,
-      relatorio2: req.relatorio2,
-      relatorio3: req.relatorio3,
-      relatorio4: req.relatorio4,
-      relatorio5: req.relatorio5,
-      relatorio6: req.relatorio6,
-      relatorio_null: req.relatorio_null
-    });
-  } else {
-    res.redirect('/login');
-  }
-}
-
 exports.cadastro = async (req, res) => {
   if(!req.user) {
     res.render('cadastro', {

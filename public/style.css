@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .jumbotron {
     background-color: #e9ecef;
 }
@@ -27,10 +31,22 @@
     border-bottom: 1px solid rgba(0,0,0,0.125);
 }
 
-footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   text-align: center;
+.navbar {
+  background: #131313;
+}
+
+body > footer {
+  background: #111!important;
+}
+
+body > footer > ul.list-unstyled.list-inline.text-center.py-2 > li:nth-child(2) > a {
+  background: #00BF85;
+  font-weight: 600;
+  padding: 0.4rem 1.4rem;
+  border-radius: 30px;
+  border: none
+}
+
+body > footer > div.container.text-center.text-md-left > div > div:nth-child(3){
+  text-decoration: none
 }

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Perfil</title>
+    <title>Produtos</title>
     <!-- Required meta tags -->
     {{> header}}
     <link rel="stylesheet" href="/dashboard.css">
@@ -70,42 +70,36 @@
             <ul class="nav flex-column mb-2">
               <li class="nav-item" id="containerRelatorios">
                 {{#if relatorio1}}
-                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio1.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio1.title}}
                   </a>
                 {{/if}}
                 {{#if relatorio2}}
-                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio2.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio2.title}}
                   </a>
                 {{/if}}
                 {{#if relatorio3}}
-                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio3.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio3.title}}
                   </a>
                 {{/if}}
                 {{#if relatorio4}}
-                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio4.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio4.title}}
                   </a>
                 {{/if}}
                 {{#if relatorio5}}
-                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio5.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio5.title}}
                   </a>
                 {{/if}}
                 {{#if relatorio6}}
-                <a class="nav-link" style="float: right;" href="/relatorios/ver/{{relatorio6.id}}"><span data-feather="search"></span></a>
                   <a class="nav-link" href="#">
                     <span data-feather="file-text"></span>
                     {{relatorio6.title}}
@@ -264,13 +258,6 @@
         })
       }
     </script>
-    
-    {{#if relatorio_visualizar}}
-    <script>
-      Swal.fire('{{relatorio_visualizar.description}}')
-    </script>
-    {{/if}}
-    
     
     <!-- Ícones -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

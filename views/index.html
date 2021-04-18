@@ -4,19 +4,29 @@
     <title>Início</title>
     <!-- Required meta tags -->
     {{> header}}
+    <link rel="stylesheet" href="/home.css">
   </head>
   <body>
     
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <img src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Flogo.png?v=1616498503733" width="150" height="50" alt="Logo"/>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <img src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Flogo%203.png" width="150" height="50" alt="Logo"/>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Início<span class="sr-only">(current)</span></a>
-        </li>
+        <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Início<span class="sr-only">(current)</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#sobre">Sobre</a>
+          <a class="dropdown-item" href="#serviço">Serviço</a>
+          <a class="dropdown-item" href="#garantimos">Garantimos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#equipa">Equipa</a>
+        </div>
+      </li>
         {{#if user}}
         <li class="nav-item">
           <a class="nav-link" href="/perfil">Perfil</a>
@@ -36,17 +46,130 @@
   </div>
 </nav>
     
-    
-      <div class="container mt-4">
-          <div class="jumbotron">
-              <h1 class="display-4">Web GEVP</h1>
-            <p class="lead"><strong>G</strong>estão de <strong>E</strong>mpresas e <strong>V</strong>endas de <strong>P</strong>rodutos</p>
-              <hr class="my-4">
-              <p>
-                Colocar aqui a descrição sobre o Site
-              </p>
-          </div>
+    <div class="mid">
+      <video autoplay muted loop>
+        <source class="embed-responsive" src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2F1.mp4" type="video/mp4">
+      </video>
+      <div class="hero text-center">
+        <h2 class="text-light display-4 font-weight-bold">
+          Web GEVP
+        </h2>
+        <p class="text-light mx-auto">
+          Gestão de Empresas e Vendas de Produtos
+        </p>
+        <a class="text-dark" href="/cadastro">Começe agora</a>
       </div>
+    </div>
+    
+    <section id="sobre" class="sobre py-5">
+      <div class="row align-items-center container my-5 mx-auto">
+        <div class="text col-lg-6 col-md-6 col-12 w-50 pt-5 pb-5">
+          <h6>
+            Objetivo e Missão
+          </h6>
+          <h2>
+            Produto, Processo e Pessoa
+          </h2>
+          <p>
+            Disponibilizamos produtos e um painel de gestão para fins de compra por empresas que necessitem de gestão e manutenção de equipamentos. 
+            <br>
+            Para assim oferecermos qualidade, facilidade e garantia na execução das tarefas.
+          </p>
+          <a href="#!">Leia mais</a>
+        </div>
+        <div class="img col-lg-6 col-md-6 col-12 w-50 pt-5 pb-5">
+          <img class="img-fluid" src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2F1.png">
+        </div>
+      </div>
+    </section>
+    
+    <section id="serviço" class="servico py-5">
+      <div class="row align-items-center container my-5 mx-auto">
+        <div class="img col-lg-6 col-md-6 col-12 w-50 pt-5 pb-5">
+          <img class="img-fluid" src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2F2.png">
+        </div>
+        <div class="text col-lg-6 col-md-6 col-12 w-50 pt-5 pb-5">
+          <h6>
+            Estágios do projeto
+          </h6>
+          <h2>
+            Passos que levaram a execução
+          </h2>
+          <p>
+            1º Passo: Escolha da linguagem e soluções para o projeto;
+            <br>
+            2º Passo: Colocar o projeto online juntamente com a base de dados e elaboração completa do projeto em fase incial;
+            <br>
+            3º Passo: Lançar o projeto publicamente e apresentação do mesmo.
+          </p>
+          <a href="#!">Leia mais</a>
+        </div>
+      </div>
+    </section>
+    
+    <section id="garantimos" class="garantimos py-5">
+      <div class="col mx-auto align-items-center my-5">
+        <div class="heading text-center pt-5">
+          <h2 class="font-weight-bold pb-5 text-light">
+            O que Garantimos
+          </h2>
+        </div>
+        <div class="row mx-auto justify-content-center align-items-center text-center container">
+          <div class="one col-lg-3 col-md-3 col-12 w-25 m-2">
+            <img class="img-fluid w-75" src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2F1.png">
+            <h5 class="font-weight-bold pt-4">
+              Produtos Qualificados
+            </h5>
+            <p>
+              Em parceria com um dos nossos patrocionadores temos produtos com qualidade na loja
+            </p>
+          </div>
+
+          <div class="one col-lg-3 col-md-3 col-12 w-25 m-2">
+            <img class="img-fluid w-75" src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2F2.png">
+            <h5 class="font-weight-bold pt-4">
+              Painel de gestão
+            </h5>
+            <p>
+              Com o nosso mais novo e recente painel, nunca foi tão fácil juntar produtos, manutenção e negócio juntos
+            </p>
+          </div>
+
+          <div class="one col-lg-3 col-md-3 col-12 w-25 m-2">
+            <img class="img-fluid w-75" src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2F3.png">
+            <h5 class="font-weight-bold pt-4">
+              Atendimento rápido
+            </h5>
+            <p>
+              Em parceria com um dos nossos patrocionadores temos produtos com qualidade na loja
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="equipa" class="equipa py-5">
+      <div class="row align-items-center container my-5 mx-auto">
+        <div class="text col-lg-6 col-md-6 col-12 w-50 pt-5 pb-5">
+          <h6>
+            A nossa equipa
+          </h6>
+          <h2>
+            Venha também fazer parte de nós
+          </h2>
+          <p>
+            Disponibilizamos um formulário para todos os interessados a ingresar na nossa equipa
+            <br>
+            Veja também quem somos e o que fazemos clicando aqui
+          </p>
+          <a href="#!">Formulário</a>
+        </div>
+        <div class="img col-lg-6 col-md-6 col-12 w-50 pt-5 pb-5">
+          <img class="img-fluid" src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2F4.png">
+        </div>
+      </div>
+    </section>
+      
 
 
 <!-- Footer -->
