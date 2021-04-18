@@ -1,68 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Perfil</title>
     <!-- Required meta tags -->
     {{> header}}
+    <link rel="stylesheet" href="/perfil.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <img src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Flogo%203.png" width="150" height="50" alt="Logo"/>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Início</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/perfil">Perfil<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/logout"><span class="badge badge-pill badge-danger">Sair</span></a>
-        </li>
-    </ul>
-  </div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <img
+        src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Flogo%203.png"
+        width="150"
+        height="50"
+        alt="Logo"
+      />
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Início</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/perfil"
+              >Perfil<span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/logout"
+              ><span class="badge badge-pill badge-danger">Sair</span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-  <div class="container mt-4">
-    <div class="row">
-      <div class="col-4">
-        <div class="card">
-          <div class="avatar-ctn">
-            <img src="/avatar.png" class="avatar" alt="Foto de perfil"/>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">{{user.name}} {{user.surname}}</h5>
-            <p class="card-text"><strong>Teste</strong> <br>Teste2</p>
-            <p class="card-text">Email registado: {{user.email}}</p>
+    <div class="container">
+      <div class="row profile">
+        <div class="col-lg-3 pb-4">
+          <div class="profile-sidebar">
+
+            <div class="profile-userpic">
+              <img
+                src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Favatar.png"
+                class="img-fluid"
+                alt="Foto de perfil"
+              />
+            </div>
+            <div class="profile-usertitle">
+              <div class="profile-usertitle-name">{{user.name}}</div>
+            </div>
+            <div class="profile-userbuttons">
+              <button onclick="painelFunction()" type="button" class="btn btn-success btn-sm">
+                Painel de Gestão
+              </button>
+            </div>
+            <div class="profile-usermenu">
+              <ul class="nav">
+                <li class="active nav-item pb-2">
+                  <a href="/perfil" class="nav-link">
+                    <i class="glyphicon glyphicon-home"></i>
+                    Geral
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/perfil/definicoes" class="nav-link">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Definições
+                  </a>
+                </li>
+              </ul>
+            </div>
+
           </div>
         </div>
-      </div>
-
-      <div class="col-8">
-        <div class="card text-center">
-          <div class="card-header">
-            Aceda ao seu Painel!
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Bem vindo ao seu Painel {{user.name}}!</h5>
-            <p class="card-text">Pode aceder ao mesmo clicando no botão a baixo.</p>
-            <a href="/painel" class="btn btn-primary">Painel de Gestão</a>
-          </div>
-          <div class="card-footer text-muted">
-            Footer
+        <div class="col-lg-9">
+          <div class="profile-content">
+            
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-<!-- Footer -->
-{{> footer}}
+    <!-- Footer -->
+    {{> footer}}
 
     <!-- Optional JavaScript -->
-   {{> js}}
+    {{> js}}
+    <script>
+      function painelFunction() {
+        location.replace('/painel')
+      }
+    </script>
   </body>
 </html>

@@ -23,17 +23,18 @@ app.engine('html', require('hbs').__express);
 hbs.registerPartials(path.join(__dirname + '/views/templates'))
 
 //Definir as Rotas
-/*
-app.use("/", (req, res) => {
-  res.status(423).send({ erro: 'Página em desenvolvimento' })
-})
-*/
-app.use("/", require('./routes/pages'));
-app.use("/admin", require('./routes/admin'))
-app.use("/auth", require('./routes/auth'));
-app.use("/loja", require('./routes/loja'));
-app.use("/relatorios", require('./routes/relatorios'));
-app.use("/projects", require('./routes/projects'));
+if (process.env.MANU_ON) {
+  app.use("/", (req, res) => {
+    res.status(423).send({ erro: 'Página em desenvolvimento' })
+  })
+} else {
+  app.use("/", require('./routes/pages'));
+  app.use("/admin", require('./routes/admin'))
+  app.use("/auth", require('./routes/auth'));
+  app.use("/loja", require('./routes/loja'));
+  app.use("/relatorios", require('./routes/relatorios'));
+  app.use("/projects", require('./routes/projects'));
+}
 
 //Definir erro ao não encontrar a página
 app.get("*", (req, res) => {
