@@ -15,8 +15,7 @@ exports.postProduct = (req, res) => {
 exports.editProductPage = (req, res) => {
     const products = Product.findById(req.params.prodId);
     res.render('editar-produto', { 
-      product: products[0], 
-      name: 'Tina' 
+      product: products[0]
     });
 }
 

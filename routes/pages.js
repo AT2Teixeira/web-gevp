@@ -6,8 +6,6 @@ const router = express.Router();
 
 router.get("/", pageMiddleware, pageController.index);
 
-router.get("/adicionar-produto", pageMiddleware, pageController.adicionar_produto)
-
 router.get("/cadastro", pageMiddleware, pageController.cadastro);
 
 router.get("/esqueceu_password", pageMiddleware, pageController.esqueceu_password);
