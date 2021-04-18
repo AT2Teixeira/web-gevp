@@ -23,6 +23,11 @@ app.engine('html', require('hbs').__express);
 hbs.registerPartials(path.join(__dirname + '/views/templates'))
 
 //Definir as Rotas
+/*
+app.use("/", (req, res) => {
+  res.status(423).send({ erro: 'Página em desenvolvimento' })
+})
+*/
 app.use("/", require('./routes/pages'));
 app.use("/admin", require('./routes/admin'))
 app.use("/auth", require('./routes/auth'));

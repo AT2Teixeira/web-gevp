@@ -4,6 +4,8 @@
     <title>Entrar</title>
     <!-- Required meta tags -->
     {{> header}}
+    <link rel="stylesheet" href="/form.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
   </head>
   <body>
     
@@ -26,33 +28,35 @@
     </ul>
   </div>
 </nav>
-
-      <div class="container mt-4">
-          <div class="card">
-            <div class="card-header">
-                Entre na sua conta!
-            </div>
-            <div class="card-body">
-                <form action="/auth/login" method="POST">
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
-                </div>
-
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-            </div>
-            <div class="card-footer">
-              <a href="/esqueceu_password">Recuperar password</a>
-            </div>
+    
+    
+    <div class="modal-dialog text-center pb-5">
+      <div class="col-sm-8 main-section">
+        <div class="modal-content">
+          
+          <div class="col-12 user-img">
+            <img src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Fface.png?v=1618742164594">
           </div>
+          
+          <form class="col-12" action="/auth/login" method="POST">
+            <div class="form-group" id="um-login">
+              <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group" id="dois-login">
+              <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn">
+              <span data-feather="log-in"></span>Login
+            </button>
+          </form>
+          
+          <div class="forgot col-12">
+            <a href="/esqueceu_password">Recuperar password</a>
+          </div>
+          
+        </div>
       </div>
+    </div>
 
 <!-- Footer -->
 {{> footer}}
@@ -73,5 +77,11 @@
       })
     </script>
     {{/if}}
+    
+    <!-- Ícones -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
   </body>
 </html>
