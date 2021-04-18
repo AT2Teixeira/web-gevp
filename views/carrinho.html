@@ -186,29 +186,6 @@
     <!-- Principal JavaScript do Bootstrap
     ================================================== -->
     {{> js}}
-    <script>
-      function gerarRelatorio() {
-      Swal.fire({
-      title: 'Criar relatório',
-      html: `
-      <form action="/relatorios/add" method="POST">
-      <input type="text" name="title" id="title" class="swal2-input" placeholder="Título">
-      <input type="text" name="description" id="description" class="swal2-input" placeholder="Descrição">
-      
-      <button type="submit" class="btn btn-primary">Criar</button>
-      </form>
-      `,
-      confirmButtonText: 'Cancelar'
-      })
-    }
-    </script>
-    
-    {{#if relatorio_visualizar}}
-    <script>
-      Swal.fire('{{relatorio_visualizar.description}}')
-    </script>
-    {{/if}}
-    
     {{#if message}}
     <script>
       const Toast = Swal.mixin({

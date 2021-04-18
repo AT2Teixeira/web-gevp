@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Perfil</title>
+    <!-- Required meta tags -->
+    {{> header}}
+    <link rel="stylesheet" href="/perfil.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <img
+        src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Flogo%203.png"
+        width="150"
+        height="50"
+        alt="Logo"
+      />
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Início</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/perfil"
+              >Perfil<span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/logout"
+              ><span class="badge badge-pill badge-danger">Sair</span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row profile">
+        <div class="col-lg-3">
+          <div class="profile-sidebar">
+            <!-- SIDEBAR USERPIC -->
+            <div class="profile-userpic">
+              <img
+                src="https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Favatar.png"
+                class="img-fluid"
+                alt="Foto de perfil"
+              />
+            </div>
+            <!-- END SIDEBAR USERPIC -->
+            <!-- SIDEBAR USER TITLE -->
+            <div class="profile-usertitle">
+              <div class="profile-usertitle-name">{{user.name}}</div>
+            </div>
+            <!-- END SIDEBAR USER TITLE -->
+            <!-- SIDEBAR BUTTONS -->
+            <div class="profile-userbuttons">
+              <button onclick="painelFunction()" type="button" class="btn btn-success btn-sm">
+                Painel de Gestão
+              </button>
+            </div>
+            <!-- END SIDEBAR BUTTONS -->
+            <!-- SIDEBAR MENU -->
+            <div class="profile-usermenu">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a href="/perfil" class="nav-link">
+                    <i class="glyphicon glyphicon-home"></i>
+                    Geral
+                  </a>
+                </li>
+                <li class="active nav-item">
+                  <a href="/perfil/definicoes" class="nav-link">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Definições
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- END MENU -->
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <div class="profile-content">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    {{> footer}}
+
+    <!-- Optional JavaScript -->
+    {{> js}}
+    <script>
+      function painelFunction() {
+        location.replace('/painel')
+      }
+    </script>
+  </body>
+</html>

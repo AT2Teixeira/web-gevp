@@ -12,6 +12,8 @@ router.get("/esqueceu_password", pageMiddleware, pageController.esqueceu_passwor
 
 router.get("/carrinho", pageMiddleware, pageController.carrinho);
 
+router.get("/perfil/definicoes", pageMiddleware, pageController.definicoes);
+
 router.get("/login", pageMiddleware, pageController.login);
 
 router.get("/loja", pageMiddleware, pageController.loja);

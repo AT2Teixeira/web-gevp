@@ -99,3 +99,13 @@ exports.perfil = async (req, res) => {
       res.redirect('/login');
     }
 }
+
+exports.definicoes = async (req, res) => {
+  if(req.user) {
+      res.render('definicoes', {
+        user: req.user
+      });
+    } else {
+      res.redirect('/login');
+    }
+}

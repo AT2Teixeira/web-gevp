@@ -115,7 +115,6 @@ exports.esqueceu_password = async (req, res) => {
       context: { token, email }
     }, (err) => {
       if (err) {
-        console.log(err);
         return res.status(400).render('esqueceu_password', { 
           message: 'Não foi possível enviar o email' 
         });
@@ -125,9 +124,8 @@ exports.esqueceu_password = async (req, res) => {
         });
     });
     
-  } catch (err) {
-    console.log(err);
-    res.status(400).render('esqueceu_password', { 
+  } catch {
+    return res.status(400).render('esqueceu_password', { 
       message: 'Erro a tentar recuperar passoword, tente novamente' 
     });
   }
@@ -147,7 +145,7 @@ exports.alterar_password = async (req, res) => {
     }
     
     if (token !== user.passwordResetToken) {
-      res.status(400).render('esqueceu_password', { 
+      return res.status(400).render('esqueceu_password', { 
         message: 'Token inválido' 
       });
     }
@@ -155,7 +153,7 @@ exports.alterar_password = async (req, res) => {
     const now = new Date()
     
     if (now > user.passwordResetExpires) {
-      res.status(400).render('esqueceu_password', { 
+      return res.status(400).render('esqueceu_password', { 
         message: 'Token expirado, por favor gere um novo' 
       });
     }
@@ -165,10 +163,10 @@ exports.alterar_password = async (req, res) => {
       email
     });
     
-    res.status(200).render('recuperar_password');
+    return res.status(200).render('recuperar_password');
     
   } catch {
-    res.status(400).render('esqueceu_password', { 
+    return res.status(400).render('esqueceu_password', { 
       message: 'Erro a tentar alterar passoword, tente novamente' 
     });
   }
@@ -195,7 +193,7 @@ exports.alterar_password_post = async (req, res) => {
     }
     
     if (token !== user.passwordResetToken) {
-      res.status(400).render('recuperar_password', { 
+      return res.status(400).render('recuperar_password', { 
         message: 'Token inválido' 
       });
     }
@@ -203,7 +201,7 @@ exports.alterar_password_post = async (req, res) => {
     const now = new Date()
     
     if (now > user.passwordResetExpires) {
-      res.status(400).render('recuperar_password', { 
+      return res.status(400).render('recuperar_password', { 
         message: 'Token expirado, por favor gere um novo' 
       });
     }
@@ -220,12 +218,12 @@ exports.alterar_password_post = async (req, res) => {
     
     await user.save();
     
-    res.status(200).render('recuperar_password', {
+    return res.status(200).render('recuperar_password', {
       message_sucesso: 'Password alterada com sucesso, volte a realizar o login para entrar na sua conta'
     });
     
   } catch {
-    res.status(400).render('recuperar_password', { 
+    return res.status(400).render('recuperar_password', { 
       message: 'Erro a tentar alterar passoword, tente novamente' 
     });
   }
