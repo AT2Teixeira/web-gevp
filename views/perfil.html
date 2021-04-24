@@ -48,7 +48,7 @@
     <div class="container">
       <div class="row profile">
         <div class="col-lg-3 pb-4">
-          <div class="profile-sidebar">
+          <div class="profile-sidebar pb-2">
 
             <div class="profile-userpic">
               <img
@@ -59,6 +59,12 @@
             </div>
             <div class="profile-usertitle">
               <div class="profile-usertitle-name">{{user.name}}</div>
+              {{#if perms.admin}}
+                <div class="profile-usertitle-job">Desenvolvedor</div>
+              {{/if}}
+              {{#if perms.membro}}
+                <div class="profile-usertitle-job">Cliente</div>
+              {{/if}}
             </div>
             <div class="profile-userbuttons">
               <button onclick="painelFunction()" type="button" class="btn btn-success btn-sm">
@@ -86,6 +92,27 @@
         </div>
         <div class="col-lg-9">
           <div class="profile-content">
+            
+            <div class="my-3 p-3 bg-white rounded box-shadow">
+              
+              <h6 class="border-bottom border-gray pb-2 mb-0">Dados de utilizador:</h6>
+              <div class="media text-muted pt-3">
+                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">Nome da empresa:</strong>
+                  {{user.empresa}}
+                </p>
+              </div>
+              
+              <div class="media text-muted pt-3">
+                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">Email:</strong>
+                  {{user.email}}
+                </p>
+              </div>
+              
+            </div>
             
           </div>
         </div>

@@ -1,5 +1,6 @@
 body {
-  background: #F1F3FA;
+  background: url(https://cdn.glitch.com/3374c32f-e1b6-40af-bd2e-7e9ffe0ef5c6%2Fmountain.jpg?v=1618742164649) no-repeat center center fixed;
+  background-size: cover;
 }
 
 /* Profile container */
@@ -31,7 +32,7 @@ body {
 }
 
 .profile-usertitle-name {
-  color: #00BF85;
+  color: #07fab0;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 7px;
@@ -39,7 +40,7 @@ body {
 
 .profile-usertitle-job {
   text-transform: uppercase;
-  color: #5b9bd1;
+  color: #00BF85;
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 15px;

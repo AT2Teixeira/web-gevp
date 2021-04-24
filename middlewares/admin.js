@@ -10,16 +10,16 @@ module.exports = async (req, res, next) => {
         );
         const user = await User.findById(decoded.id);
           
-        if (user._id == '605dcdc9e3a81403950ce595') {
+        if (user._id == process.env.ID) {
           return next();
         } else {
-          res.send({ error: 'Acesso negado' })
+          return res.status(401).send({ error: 'Acesso negado' })
         }
         
       } catch (error) {
-        return res.send({ error: 'Token erro' })
+        return res.status(401).send({ error: 'Acesso negado' })
       }
     } else {
-      res.send({ error: 'Token não encontrado' })
+      return res.status(400).send({ error: 'Token não encontrado' })
     }
 }

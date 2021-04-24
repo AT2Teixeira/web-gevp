@@ -1,12 +1,16 @@
 const mongoose = require('../database');
 
-const ProjectSchema = new mongoose.Schema({
+const RelatorioSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
   },
   description: {
     type: String,
+    required: true
+  },
+  conteudo: {
+    type: Array,
     required: true
   },
   user: {
@@ -20,6 +24,6 @@ const ProjectSchema = new mongoose.Schema({
   }
 });
 
-const Project = mongoose.model('Project', ProjectSchema);
+const Relatorio = mongoose.model('Relatorio', RelatorioSchema);
 
-module.exports = Project;
+module.exports = Relatorio;
