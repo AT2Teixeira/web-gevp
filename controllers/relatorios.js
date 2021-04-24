@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const Project = require('../models/project');
+const Relatorios = require('../models/relatorios');
 const User = require('../models/user');
 
 exports.visualizar = async (req, res) => {
@@ -21,9 +21,9 @@ exports.visualizar = async (req, res) => {
 
 exports.criar = async (req, res) => {  
   try {    
-    const { title, description } = req.body;
+    const { title, description, conteudo } = req.body;
     
-    if (!title || !description) {
+    if (!title || !description || !conteudo) {
       return res.status(400).render('relatorios', {
         message: 'Preencha todos os campos',
         user: req.user,
@@ -38,11 +38,11 @@ exports.criar = async (req, res) => {
     }
     
     let user = req.user
-    const projects = await Project.find({user: user.id});
+    const relatorio = await Relatorios.find({user: user.id});
     
-    if (projects[5]) {
+    if (relatorio[5]) {
       return res.status(400).render('relatorios', { 
-        message: 'Limite máximo de relatórios (máx: 6)', 
+        message: 'Limite máximo de relatórios (Máx: 6)', 
         user: req.user,
         relatorio1: req.relatorio1,
         relatorio2: req.relatorio2,
@@ -54,15 +54,15 @@ exports.criar = async (req, res) => {
       });
     }
     
+    const relatorio_save = await Relatorios.create({ title, description, conteudo: Array(conteudo), user: req.user });
     
-    const project = await Project.create({ title, description, user: req.user });
-    
-    await project.save()
+    await relatorio_save.save()
     
     return res.redirect('/relatorios')
 
     
   } catch (err) {
+    console.log(err)
     return res.status(400).render('relatorios', { 
       message: 'Erro ao tentar criar o relatório, tente novamente', 
       user: req.user,
@@ -79,7 +79,7 @@ exports.criar = async (req, res) => {
 
 exports.eliminarUm = async (req, res) => {
   try {
-    const project = await Project.findByIdAndRemove(req.params.removeId);
+    const relatorio = await Relatorios.findByIdAndRemove(req.params.removeId);
     
     return res.redirect('/relatorios')
     
@@ -101,10 +101,10 @@ exports.eliminarUm = async (req, res) => {
 
 exports.visualizarUm = async (req, res) => {
   try {
-    const project = await Project.findById(req.params.visualizarId);
+    const relatorio = await Relatorios.findById(req.params.visualizarId);
     
     return res.render('painel', {
-      relatorio_visualizar: project,
+      relatorio_visualizar: relatorio,
       user: req.user,
       relatorio1: req.relatorio1,
       relatorio2: req.relatorio2,

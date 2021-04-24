@@ -93,7 +93,8 @@ exports.painel = async (req, res) => {
 exports.perfil = async (req, res) => {
   if(req.user) {
       res.render('perfil', {
-        user: req.user
+        user: req.user,
+        perms: req.permissoes
       });
     } else {
       res.redirect('/login');

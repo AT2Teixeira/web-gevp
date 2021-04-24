@@ -1,8 +1,8 @@
-const Project = require('../models/project');
+const Relatorio = require('../models/relatorios');
 
 exports.visualizarTodos = async (req, res) => {
   try {
-    const projects = await Project.find().populate(['user']);
+    const projects = await Relatorio.find().populate(['user']);
     
     return res.send({ projects })
     
@@ -14,7 +14,7 @@ exports.visualizarTodos = async (req, res) => {
 
 exports.visualizarUm = async (req, res) => {
   try {
-    const project = await Project.findById(req.params.projectId).populate(['user']);
+    const project = await Relatorio.findById(req.params.projectId).populate(['user']);
     
     return res.send({ project })
     
@@ -28,7 +28,7 @@ exports.criar = async (req, res) => {
   try {
     const { title, description } = req.body;
     
-    const project = await Project.create({ title, description, user: req.userId });
+    const project = await Relatorio.create({ title, description, user: req.userId });
     
     await project.save()
     
@@ -43,7 +43,7 @@ exports.editar = async (req, res) => {
   try {
     const { title, description } = req.body;
     
-    const project = await Project.findByIdAndUpdate(req.params.projectId, { 
+    const project = await Relatorio.findByIdAndUpdate(req.params.projectId, { 
       title, 
       description,
     }, { new: true });
@@ -59,7 +59,7 @@ exports.editar = async (req, res) => {
 
 exports.eliminarUm = async (req, res) => {
   try {
-    const project = await Project.findByIdAndRemove(req.params.projectId);
+    const project = await Relatorio.findByIdAndRemove(req.params.projectId);
     
     return res.send()
     

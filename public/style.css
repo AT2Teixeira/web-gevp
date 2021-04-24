@@ -36,16 +36,24 @@ background: #00BF85;
 
 .avatar-ctn {
     background-color: orange;
-    text-align: center;
+    text-align: center
 }
 
 .avatar {
     width: 65%;
-    border-bottom: 1px solid rgba(0,0,0,0.125);
+    border-bottom: 1px solid rgba(0,0,0,0.125)
 }
 
 .navbar {
-  background: #131313;
+  background: #131313
+}
+
+.dropdown-menu {
+  background: #131313
+}
+
+.dropdown-item {
+  color: #fff
 }
 
 body > footer {

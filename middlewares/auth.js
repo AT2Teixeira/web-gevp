@@ -10,9 +10,9 @@ module.exports = async (req, res, next) => {
           
           return next();
       } catch (error) {
-        return res.send({ error: 'Token erro' })
+        return res.status(401).send({ error: 'Acesso negado' })
       }
     } else {
-      res.send({ error: 'Token não encontrado' })
+      res.status(400).send({ error: 'Token não encontrado' })
     }
 }
