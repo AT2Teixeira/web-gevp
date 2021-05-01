@@ -2,13 +2,24 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const crypto = require('crypto');
+const cryptoJS = require('crypto-js');
 const mailer = require('../modules/mailer')
+const Verify_User = require('../models/verify_user');
 const sessionstorage = require('sessionstorage');
 
 function gerarToken(params = {}){
   return jwt.sign(params, process.env.JWT_SECRET, {
     expiresIn: 86400
   })
+}
+
+function gerarCrypto(dados){
+  return cryptoJS.AES.encrypt(JSON.stringify(dados), process.env.CRYPTO_SENHA).toString();
+}
+
+function desvendarCrypto(dados){
+  const decipher = cryptoJS.AES.decrypt(dados, process.env.CRYPTO_SENHA);
+  return JSON.parse(decipher.toString(cryptoJS.enc.Utf8));
 }
 
 exports.cadastro = async (req, res) => {
@@ -32,18 +43,83 @@ exports.cadastro = async (req, res) => {
           message: 'Palavra pass e confirmar palavra pass não coincidem'
       }); 
     }
-      
-    const user = await User.create(req.body);
     
-    user.password = undefined;    
+    const token = gerarCrypto(req.body);
+    
+    const id_token = crypto.randomBytes(60).toString('hex');
+    
+    const now = new Date();
+    now.setHours(now.getHours() + 1);
+    
+    const user = await Verify_User.create({
+      id_user: id_token,
+      dados: token,
+      passwordResetToken: id_token,
+      passwordResetExpires: now
+    });
+    
+    mailer.sendMail({
+      to: email,
+      from: '"Noreply" <web.gevp@gmail.com>',
+      subject: 'Verificação de Identidade',
+      template: 'auth/verificar_identidade',
+      context: { id_token }
+    }, (err) => {
+      if (err) {
+        return res.status(400).render('cadastro', { 
+          message: 'Não foi possível enviar o email' 
+        });
+      }
+      return res.status(200).render('cadastro', {
+        message_sucesso: 'Foi enviado um email de verificação, por favor verifique a sua caixa'
+      })
+    });  
+    
+  } catch {
+    return res.status(400).render('cadastro', { 
+      message: 'Erro no cadastro' 
+    });
+  }
+}
+
+exports.verificar_identidade = async (req, res) => {
+  const id_user = req.params.id
   
+  try {
+    const verify_user = await Verify_User.findOne({ id_user }).select('+passwordResetExpires passwordResetToken dados');
+    
+    if (!verify_user) {
+      return res.status(400).render('cadastro', { 
+        message: 'Registo não encontrado' 
+      });
+    }
+    
+    if (id_user !== verify_user.passwordResetToken) {
+      return res.status(400).render('cadastro', { 
+        message: 'Registo inválido' 
+      });
+    }
+    
+    const now = new Date()
+    
+    if (now > verify_user.passwordResetExpires) {
+      return res.status(400).render('cadastro', { 
+        message: 'Registo expirado, por favor faça um novamente' 
+      });
+    }
+
+    const user = await User.create(desvendarCrypto(verify_user.dados));
+    
+    user.password = undefined; 
+    
+    verify_user.delete({ id_user })
     
     res.cookie('jwt', await gerarToken({ id: user.id }));
     return res.redirect('/perfil')
     
-  } catch (err) {
+  } catch {
     return res.status(400).render('cadastro', { 
-      message: 'Erro no cadastro' 
+      message: 'Erro a tentar cadastrar usuário, tente novamente' 
     });
   }
 }
