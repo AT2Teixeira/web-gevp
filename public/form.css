@@ -89,12 +89,9 @@ body {
   content: "\f023"
 }
 
-button {
-  width: 40%;
-  margin: 5px 0px 25px
-}
-
 .btn {
+  width: 40%;
+  margin: 5px 0px 25px;
   background-color: #27c2a5;
   color: #fff;
   font-size: 19px;

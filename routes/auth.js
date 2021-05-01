@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.post("/cadastro", authController.cadastro);
 
+router.get("/verificar_identidade/:id", authController.verificar_identidade);
+
 router.post("/login", authController.login);
 
 router.post("/esqueceu_password", authController.esqueceu_password);
