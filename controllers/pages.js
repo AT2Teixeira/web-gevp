@@ -104,7 +104,8 @@ exports.perfil = async (req, res) => {
 exports.definicoes = async (req, res) => {
   if(req.user) {
       res.render('definicoes', {
-        user: req.user
+        user: req.user,
+        perms: req.permissoes
       });
     } else {
       res.redirect('/login');

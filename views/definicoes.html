@@ -59,6 +59,12 @@
             </div>
             <div class="profile-usertitle">
               <div class="profile-usertitle-name">{{user.name}}</div>
+              {{#if perms.admin}}
+                <div class="profile-usertitle-job">Desenvolvedor</div>
+              {{/if}}
+              {{#if perms.membro}}
+                <div class="profile-usertitle-job">Cliente</div>
+              {{/if}}
             </div>
             <div class="profile-userbuttons">
               <button onclick="painelFunction()" type="button" class="btn btn-success btn-sm">
