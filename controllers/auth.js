@@ -75,7 +75,7 @@ exports.cadastro = async (req, res) => {
       })
     });  
     
-  } catch {
+  } catch (err) {
     return res.status(400).render('cadastro', { 
       message: 'Erro no cadastro' 
     });

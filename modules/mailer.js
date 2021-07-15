@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars');
 
 // Gmail web.gevp
+/*
 const transport = nodemailer.createTransport({
   service: `${process.env.GMAIL_SERVICE}`,
   host: `${process.env.GMAIL_HOST}`,
@@ -11,18 +12,20 @@ const transport = nodemailer.createTransport({
     pass: `${process.env.GMAIL_PASS}`
   }
 });
+*/
 
 // Mail (mailtrap.io)
-/*
+
 const transport = nodemailer.createTransport({
-  host: `${process.env.MAILER_HOST}`,
-  port: `${process.env.MAILER_PORT}`,
+  host: `${process.env.GMAIL_HOST}`,
+  port: `${process.env.GMAIL_PORT}`,
+  secure: true, // Usando SSL
   auth: {
-    user: `${process.env.MAILER_USER}`,
-    pass: `${process.env.MAILER_PASS}`
+    user: `${process.env.GMAIL_USER}`,
+    pass: `${process.env.GMAIL_PASS}`
   }
 });
-*/
+
 
 
 transport.use('compile', hbs({

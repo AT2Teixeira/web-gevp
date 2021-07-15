@@ -78,6 +78,18 @@
       })
     </script>
     {{/if}}
+    {{#if message_sucesso}}
+    <script>
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{message_sucesso}}',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      })
+    </script>
+    {{/if}}
 
   </body>
 </html>
