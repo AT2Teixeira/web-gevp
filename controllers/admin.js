@@ -1,7 +1,7 @@
 const Product = require('../models/produto');
 
 exports.postProduct = (req, res) => {
-  const { title, imageUrl, price, description } = req.body
+  const { title, price, imageUrl, description } = req.body
 
   const prod = new Product(null, title, price, imageUrl, description);
   prod.save();
@@ -19,7 +19,6 @@ exports.editProductPage = (req, res) => {
 exports.editProductPost = (req, res) => {
   const updatedProduct = new Product(req.body.id, req.body.title, req.body.price, req.body.imageURL, req.body.description);
   updatedProduct.update();
-  // res.redirect('/');
   res.redirect(`/loja/${updatedProduct.id}`);
 }
 

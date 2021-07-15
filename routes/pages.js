@@ -10,9 +10,13 @@ router.get("/cadastro", pageMiddleware, pageController.cadastro);
 
 router.get("/esqueceu_password", pageMiddleware, pageController.esqueceu_password);
 
-router.get("/carrinho", pageMiddleware, pageController.carrinho);
-
 router.get("/perfil/definicoes", pageMiddleware, pageController.definicoes);
+
+router.get("/relatorios", pageMiddleware, pageController.relatorios)
+
+router.get("/carrinho", pageMiddleware, pageController.carrinho)
+
+router.get("/produtos/:prodId", pageMiddleware, pageController.produtos)
 
 router.get("/login", pageMiddleware, pageController.login);
 

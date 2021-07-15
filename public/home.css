@@ -40,7 +40,8 @@
   font-weight: 600;
   padding: 0.6rem 1.4rem;
   border-radius: 30px;
-  text-decoration: none
+  text-decoration: none;
+  color: #111
 }
 
 .mid .hero a:hover {
@@ -88,6 +89,10 @@
   color: #111
 }
 
+.sobre .text a:hover {
+  background: #fff;
+}
+
 .servico .text {
   display: flex;
   flex-direction: column;
@@ -116,12 +121,16 @@
 }
 
 .servico .text a {
-  background: #111;
+  background: #00BF7F;
   font-weight: 500;
   padding: 0.6rem 1.4rem;
   border-radius: 30px;
   text-decoration: none;
   color: #fff
+}
+
+.servico .text a:hover {
+  background: #111;
 }
 
 .garantimos {
@@ -137,6 +146,10 @@
   text-align: center;
   padding: 2rem 1.5rem;
   border-radius: 7px
+}
+
+.garantimos .one:hover {
+  transform: scale(1.1);
 }
 
 .equipa .text {
@@ -167,10 +180,14 @@
 }
 
 .equipa .text a {
-  background: #111;
+  background: #00BF7F;
   font-weight: 500;
   padding: 0.6rem 1.4rem;
   border-radius: 30px;
   text-decoration: none;
   color: #fff
+}
+
+.equipa .text a:hover {
+  background: #111
 }

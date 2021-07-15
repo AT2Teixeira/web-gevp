@@ -1,3 +1,5 @@
+//Verifica se a pessoa está ou não logada em uma conta existente
+
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const Relatorio = require('../models/relatorios');

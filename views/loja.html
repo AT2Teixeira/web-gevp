@@ -158,6 +158,7 @@
     <!-- Principal JavaScript do Bootstrap
     ================================================== -->
     {{> js}}
+    {{#if perms.admin}}
     <script>
       function adicionarFunction() {
       Swal.fire({
@@ -166,19 +167,19 @@
       <form action="/admin/adicionar-produto" method="POST">
       <div class="form-group">
           <label for="title">Título</label>
-          <input class="form-control" id="title" name="title">
+          <input class="form-control" name="title">
       </div>
       <div class="form-group">
           <label for="price">Preço</label>
-          <input class="form-control" id="price" name="price">
+          <input class="form-control" name="price">
       </div>
       <div class="form-group">
           <label for="imageURL">Imagem URL</label>
-          <input class="form-control" id="imageURL" name="imageURL">
+          <input class="form-control" name="imageURL">
       </div>
       <div class="form-group">
           <label for="description">Descrição</label>
-          <textarea class="form-control" name="description" id="description"></textarea>
+          <textarea class="form-control" name="description"></textarea>
       </div>
       
       <button type="submit" class="btn btn-primary">Submeter</button>
@@ -193,22 +194,26 @@
       Swal.fire({
       title: 'Editar produto',
       html: `
-      <form action="/relatorios/add" method="POST">
+      <form action="/admin/editar-produto" method="POST">
+      <div class="form-group">
+          <label for="title">ID do produto</label>
+          <input class="form-control" name="id">
+      </div>
       <div class="form-group">
           <label for="title">Título</label>
-          <input class="form-control" id="title" name="title">
+          <input class="form-control" name="title">
       </div>
       <div class="form-group">
           <label for="price">Preço</label>
-          <input class="form-control" id="price" name="price">
+          <input class="form-control" name="price">
       </div>
       <div class="form-group">
           <label for="imageURL">Imagem URL</label>
-          <input class="form-control" id="imageURL" name="imageURL">
+          <input class="form-control" name="imageURL">
       </div>
       <div class="form-group">
           <label for="description">Descrição</label>
-          <textarea class="form-control" name="description" id="description"></textarea>
+          <textarea class="form-control" id="description"></textarea>
       </div>
       
       <button type="submit" class="btn btn-primary">Submeter</button>
@@ -223,10 +228,10 @@
       Swal.fire({
       title: 'Eliminar produto',
       html: `
-      <form action="/relatorios/add" method="POST">
+      <form action="/admin/eliminar-produto" method="POST">
       <div class="form-group">
           <label for="description">Insira o ID</label>
-          <input class="form-control" name="id" id="id">
+          <input class="form-control" name="id">
       </div>
       
       <button type="submit" class="btn btn-primary">Submeter</button>
@@ -236,7 +241,7 @@
       })
     }
     </script>
-    
+    {{/if}}
     
     <script>
       function adcionadoFunction() {
