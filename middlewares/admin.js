@@ -1,3 +1,5 @@
+//Verifica se sou eu a aceder ao endpoint
+
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 

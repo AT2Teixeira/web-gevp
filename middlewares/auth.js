@@ -1,3 +1,5 @@
+//Verifica se a pessoa que está a tentar aceder ao endpoint está logada em uma conta existente
+
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res, next) => {

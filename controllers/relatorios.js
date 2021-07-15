@@ -2,23 +2,6 @@ const jwt = require('jsonwebtoken');
 const Relatorios = require('../models/relatorios');
 const User = require('../models/user');
 
-exports.visualizar = async (req, res) => {
-  if(req.user) {
-    res.render('relatorios', {
-      user: req.user,
-      relatorio1: req.relatorio1,
-      relatorio2: req.relatorio2,
-      relatorio3: req.relatorio3,
-      relatorio4: req.relatorio4,
-      relatorio5: req.relatorio5,
-      relatorio6: req.relatorio6,
-      relatorio_null: req.relatorio_null
-    });
-  } else {
-    res.redirect('/login');
-  }
-}
-
 exports.criar = async (req, res) => {  
   try {    
     const { title, description, conteudo } = req.body;
