@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     {{> header}}
     <link rel="stylesheet" href="/dashboard.css">
+    <link rel="stylesheet" href="/produtos.css">
   </head>
 
   <body>
@@ -123,114 +124,59 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Produtos</h1>
+            <h1 class="h2">Detalhes</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary"><span data-feather="send"></span> Compartilhar</button>
-                <button class="btn btn-sm btn-outline-secondary"><span data-feather="download"></span> Exportar</button>
+                <a href="/loja"><button class="btn btn-sm btn-outline-secondary"><span data-feather="shopping-bag"></span> Voltar</button></a>
+                <a href="/carrinho"><button class="btn btn-sm btn-outline-secondary"><span data-feather="shopping-cart"></span> Carrinho</button></a>
               </div>
             </div>
           </div>
 
+        {{#if prod}}
+          <div class="card">
+            <div class="row">
+              <aside class="col-sm-5 border-right">
+                <article class="gallery-wrap"> 
+                <div class="img-big-wrap">
+                  <div> <a href="#"><img src="{{prod.imageURL}}"></a></div>
+                </div> 
+                </article> 
+                    </aside>
+                    <aside class="col-sm-7">
+                <article class="card-body p-5">
+                  <h3 class="title mb-3">{{prod.title}}</h3>
 
-          <div class="container-fluid">
-    <div class="content-wrapper">
-        <div class="item-container">
-            <div class="container">
-                <div class="col-lg-12">
-                    <div class="product col-lg-3 service-image-left">
-                        <center>
-                            <img id="item-display" src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png"
-                            alt="">
-                        </center>
-                    </div>
-                    <div class="container service1-items col-md-2 col-lg-2 float-left">
-                        <center>	<a id="item-1" class="service1-item">
+                <p class="price-detail-wrap"> 
+                  <span class="price h3 text-warning">{{prod.price}} €</span> 
+                </p>
+                <dl class="item-property">
+                  <dt>Descrição</dt>
+                  <dd><p>{{prod.description}}</p></dd>
+                </dl>
+                <dl class="param param-feature">
+                  <dt>Referência</dt>
+                  <dd>{{prod.id}}</dd>
+                </dl> 
 
-								<img src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt="">
-
-							</a>
-	<a id="item-2" class="service1-item">
-
-								<img src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt="">
-
-							</a>
-	<a id="item-3" class="service1-item">
-
-								<img src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt="">
-
-							</a>
-                        </center>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="product-title">Corsair GS600 600 Watt PSU</div>
-                    <div class="product-desc">The Corsair Gaming Series GS600 is the ideal price/performance choice
-                        for mid-spec gaming PC</div>
-                    <div class="product-rating"><i class="fa fa-star gold"></i>  <i class="fa fa-star gold"></i>  <i class="fa fa-star gold"></i> 
-                        <i
-                        class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> 
-                    </div>
-                    <hr>
-                    <div class="product-price">$ 1234.00</div>
-                    <div class="product-stock">In Stock</div>
-                    <hr>
-                    <div class="btn-group cart">
-                        <button type="button" class="btn btn-success">Adicionar ao carrinho</button>
-                    </div>
-                </div>
+                  <hr>
+                  <button onclick="comprarFunction()" type="submit" class="btn btn-lg btn-primary float-left"><span class="span-add" data-feather="credit-card"></span> Comprar</button>
+                  <form class="float-left" action="/loja/adicionar-ao-carrinho" method="POST">
+                    <input type="hidden" name="id" value="{{prod.id}}">
+                    <button onclick="adcionadoFunction()" type="submit" class="btn btn-lg btn-outline-primary"><span class="span-add" data-feather="plus-square"></span> Adicionar ao carrinho</button>
+                  </form>
+                  <br>
+                </article>
+              </aside>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="col-lg-12 product-info">
-                <ul id="myTab" class="nav nav-tabs nav_tabs">
-                    <li class="active nav-item"><a href="#service-one" data-toggle="tab" class="nav-link">DESCRIPTION</a>
-                    </li>
-                    <li class="nav-item"><a href="#service-two" data-toggle="tab" class="nav-link">PRODUCT INFO</a>
-                    </li>
-                    <li class="nav-item"><a href="#service-three" data-toggle="tab" class="nav-link">REVIEWS</a>
-                    </li>
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="service-one">
-                        <section class="container product-info">The Corsair Gaming Series GS600 power supply is the ideal price-performance
-                            solution for building or upgrading a Gaming PC. A single +12V rail provides
-                            up to 48A of reliable, continuous power for multi-core gaming PCs with
-                            multiple graphics cards. The ultra-quiet, dual ball-bearing fan automatically
-                            adjusts its speed according to temperature, so it will never intrude on
-                            your music and games. Blue LEDs bathe the transparent fan blades in a cool
-                            glow. Not feeling blue? You can turn off the lighting with the press of
-                            a button.
-                            	<h3>Corsair Gaming Series GS600 Features:</h3>
-                            <li>It supports the latest ATX12V v2.3 standard and is backward compatible
-                                with ATX12V 2.2 and ATX12V 2.01 systems</li>
-                            <li>An ultra-quiet 140mm double ball-bearing fan delivers great airflow at
-                                an very low noise level by varying fan speed in response to temperature</li>
-                            <li>80Plus certified to deliver 80% efficiency or higher at normal load conditions
-                                (20% to 100% load)</li>
-                            <li>0.99 Active Power Factor Correction provides clean and reliable power</li>
-                            <li>Universal AC input from 90~264V &#x2014; no more hassle of flipping that
-                                tiny red switch to select the voltage input!</li>
-                            <li>Extra long fully-sleeved cables support full tower chassis</li>
-                            <li>A three year warranty and lifetime access to Corsair&#x2019;s legendary
-                                technical support and customer service</li>
-                            <li>Over Current/Voltage/Power Protection, Under Voltage Protection and Short
-                                Circuit Protection provide complete component safety</li>
-                            <li>Dimensions: 150mm(W) x 86mm(H) x 160mm(L)</li>
-                            <li>MTBF: 100,000 hours</li>
-                            <li>Safety Approvals: UL, CUL, CE, CB, FCC Class B, T&#xDC;V, CCC, C-tick</li>
-                        </section>
-                    </div>
-                    <div class="tab-pane fade" id="service-two">
-                        <section class="container"></section>
-                    </div>
-                    <div class="tab-pane fade" id="service-three"></div>
-                </div>
-                <hr>
-            </div>
-        </div>
-    </div>
-</div>
+          </div>
+        {{else}}
+          <div class="alert alert-warning" role="alert">
+            <center>
+              Não foi encontrado nenhum produto.
+            </center>
+          </div>
+        {{/if}}
           
         </main>
       </div>
@@ -238,26 +184,26 @@
     <!-- Principal JavaScript do Bootstrap
     ================================================== -->
     {{> js}}
-    {{#if message}}
     <script>
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
+      function adcionadoFunction() {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
 
-      Toast.fire({
-        icon: 'error',
-        title: '{{message}}'
-      })
+        Toast.fire({
+          icon: 'success',
+          title: 'O produto foi adicionado ao carrinho'
+        })
+      }
     </script>
-    {{/if}}
     
     <!-- Ícones -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

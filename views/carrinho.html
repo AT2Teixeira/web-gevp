@@ -131,7 +131,6 @@
             </div>
           </div>
           
-          {{#if cart}}
               <table class="table">
                   <thead>
                       <tr>
@@ -146,7 +145,7 @@
                       {{#each cart.products}}
                           <tr>
                               <th scope="row">
-                                {{id}}
+                                  {{id}}
                               </th>
                               <td>
                                   {{title}}
@@ -173,9 +172,6 @@
                           </tr>
                   </tbody>
               </table>
-          {{else}}
-            <h2>Você ainda não possui nenhum produto no carrinho</h2>
-          {{/if}}
           
         </main>
       </div>

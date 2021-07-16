@@ -133,19 +133,19 @@
           {{#each prods}}
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="{{imageURL}}" alt="Imagem do Produto"></a>
+                <img class="card-img-top" src="{{imageURL}}" alt="Imagem do Produto">
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a href="#">{{title}}</a>
+                        <a href="/produtos/{{id}}">{{title}}</a>
                     </h4>
-                    <h5>€ {{price}}</h5>
-                    <p class="card-text">{{description}}</p>
+                    <h5>{{price}} €</h5>
+                    <p class="card-text">Referência: {{id}}</p>
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-primary" href="/produtos/{{id}}" role="button"><span data-feather="search"></span> Ver detalhes</a>
-                    <form action="/loja/adicionar-ao-carrinho" method="POST">
+                    <a class="btn btn-primary float-left" href="/produtos/{{id}}" role="button"><span data-feather="search"></span> Detalhes</a>
+                    <form class="float-left" action="/loja/adicionar-ao-carrinho" method="POST">
                         <input type="hidden" name="id" value="{{id}}">
-                        <button onclick="adcionadoFunction()" type="submit" class="btn btn-primary"><span data-feather="plus-square"></span> Adicionar ao carrinho</button>
+                        <button onclick="adcionadoFunction()" type="submit" class="btn btn-outline-primary"><span data-feather="plus-square"></span> Adicionar ao carrinho</button>
                     </form>
                 </div>
             </div>
