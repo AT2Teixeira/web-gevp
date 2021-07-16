@@ -123,21 +123,19 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Produtos</h1>
+            <h1 class="h2">Carrinho</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary"><span data-feather="send"></span> Compartilhar</button>
-                <button class="btn btn-sm btn-outline-secondary"><span data-feather="download"></span> Exportar</button>
+                <a href="/loja"><button class="btn btn-sm btn-outline-secondary"><span data-feather="shopping-bag"></span> Voltar</button></a>
               </div>
             </div>
           </div>
           
           {{#if cart}}
-            <h2>Shopping Cart Detail</h2>
               <table class="table">
                   <thead>
                       <tr>
-                          <th scope="col">#</th>
+                          <th scope="col">Referência</th>
                           <th scope="col">Título</th>
                           <th scope="col">Preço</th>
                           <th scope="col">Quantidade</th>
@@ -148,34 +146,33 @@
                       {{#each cart.products}}
                           <tr>
                               <th scope="row">
-                                  <%= i+1%>
+                                {{id}}
                               </th>
                               <td>
-                                  <%= product.title%>
+                                  {{title}}
                               </td>
                               <td>
-                                  <%= product.price%>
+                                  {{price}}
                               </td>
                               <td>
-                                  <%= product.qty%>
+                                  {{qty}}
                               </td>
                               <td>
-                                  <form action="/delete-cart" method="POST">
-                                      <input type="hidden" name="prodId" value="<%= product.id%>">
-                                      <button type="submit" class="btn btn-primary">Delete</button>
+                                  <form action="/loja/eliminar-do-carrinho" method="POST">
+                                      <input type="hidden" name="prodId" value="{{id}}">
+                                      <button type="submit" class="btn btn-primary">Eliminar</button>
                                   </form>
                               </td>
                           </tr>
-                          <%}%>
-                              <tr>
-                                  <td>Total Price: </td>
-                                  <td colspan="4">
-                                      <%= cart.totalPrice%>
-                                  </td>
-                              </tr>
+                    {{/each}}
+                          <tr>
+                              <td>Preço total: </td>
+                              <td colspan="4">
+                                  {{cart.totalPrice}}
+                              </td>
+                          </tr>
                   </tbody>
               </table>
-          {{/each}}
           {{else}}
             <h2>Você ainda não possui nenhum produto no carrinho</h2>
           {{/if}}
