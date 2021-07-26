@@ -3,6 +3,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const Relatorio = require('../models/relatorios');
+const Equipamentos = require('../models/equipamentos');
 const moment =  require('moment');
 moment.locale("pt-pt")
 
@@ -21,7 +22,7 @@ module.exports = async (req, res, next) => {
         return next();
       }
 
-      // 3) Verifica os projetos
+      // 3) Verifica os relatorios
       const relatorio = await Relatorio.find({user: user._id});
 
       if (relatorio < 1) {
@@ -41,6 +42,13 @@ module.exports = async (req, res, next) => {
         req.relatorio4 = array[3]
         req.relatorio5 = array[4]
         req.relatorio6 = array[5]
+      }
+      
+      // 4) Verifica os equipamentos
+      const equipamento = await Equipamentos.find({user: user._id});
+
+      if (relatorio) {
+        req.equipamentos = equipamento
       }
 
       let perms = new Object()

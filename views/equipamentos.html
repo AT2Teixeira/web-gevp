@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Carrinho</title>
+    <title>Equipamentos</title>
     <!-- Required meta tags -->
     {{> header}}
     <link rel="stylesheet" href="/dashboard.css">
+    <link rel="stylesheet" href="/equipamentos.css">
   </head>
 
   <body>
@@ -30,15 +31,21 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/loja">
+                <a class="nav-link" href="/loja">
                   <span data-feather="shopping-cart"></span>
-                  Produtos <span class="sr-only">(atual)</span>
+                  Produtos
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/relatorios">
-                  <span data-feather="bar-chart-2"></span>
+                  <span data-feather="list"></span>
                   Relatórios
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/equipamentos">
+                  <span data-feather="monitor"></span>
+                  Equipamentos <span class="sr-only">(atual)</span>
                 </a>
               </li>
             </ul>
@@ -105,80 +112,52 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Carrinho</h1>
+            <h1 class="h2">Equipamentos</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <a href="/loja"><button class="btn btn-sm btn-outline-secondary"><span data-feather="shopping-bag"></span> Voltar</button></a>
+                <button class="btn btn-sm btn-outline-secondary"><span data-feather="download"></span> Exportar</button>
               </div>
             </div>
           </div>
           
-          <div class="row">
-            <article class="card">
-            <div class="card-body p-5">
-
-            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
-                <i class="fa fa-credit-card"></i> Cartão de crédito</a></li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
-                <i class="fab fa-paypal"></i>  Paypal</a></li>
-            </ul>
-
-            <div class="tab-content">
-            <div class="tab-pane fade show active" id="nav-tab-card">
-              <form role="form">
-              <div class="form-group">
-                <label for="username">Nome completo</label>
-                <input type="text" class="form-control" name="username" placeholder="" required="">
-              </div> <!-- form-group.// -->
-
-              <div class="form-group">
-                <label for="cardNumber">Número do cartão</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" name="cardNumber" placeholder="">
-                  <div class="input-group-append">
-                    <span class="input-group-text text-muted">
-                      <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>   
-                      <i class="fab fa-cc-mastercard"></i> 
-                    </span>
-                  </div>
-                </div>
-              </div> <!-- form-group.// -->
-
-              <div class="row">
-                  <div class="col-sm-8">
-                      <div class="form-group">
-                          <label><span class="hidden-xs">Vencimento</span> </label>
-                        <div class="input-group">
-                          <input type="number" class="form-control" placeholder="MM" name="">
-                            <input type="number" class="form-control" placeholder="YY" name="">
+          
+          <div class="container-lg">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-8"><h2>Manutenção de <b>Equipamentos</b></h2></div>
+                            <div class="col-sm-4">
+                                <button type="button" onclick="gerarEquipamento()" class="btn btn-info add-new"><i class="fa fa-plus"></i> Adicionar</button>
+                            </div>
                         </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-4">
-                      <div class="form-group">
-                          <label data-toggle="tooltip">Nº Seg</label>
-                          <input type="number" class="form-control" required="">
-                      </div> <!-- form-group.// -->
-                  </div>
-              </div> <!-- row.// -->
-              <button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
-              </form>
-            </div> <!-- tab-pane.// -->
-            <div class="tab-pane fade" id="nav-tab-paypal">
-            <p>Paypal é a maneira mais fácil de pagar online</p>
-            <p>
-            <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Entre com o Paypal </button>
-            </p>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Referência</th>
+                                <th>Data da Manutenção</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {{#each equipamentos}}
+                            <tr>
+                                <td>{{this.name}}</td>
+                                <td>{{this.referencia}}</td>
+                                <td>{{this.data}}</td>
+                                <td>
+                                    <a onclick="editarEquipamento({{this.referencia}})" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a onclick="elimanarEquipamento({{this.referencia}})" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                </td>
+                            </tr> 
+                          {{/each}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            </div> <!-- tab-content .// -->
-
-            </div> <!-- card-body.// -->
-            </article> <!-- card.// -->
-
-            </div> <!-- row.// -->
+        </div>     
           
         </main>
       </div>
@@ -186,6 +165,78 @@
     <!-- Principal JavaScript do Bootstrap
     ================================================== -->
     {{> js}}
+    <script>
+      function gerarEquipamento() {
+      Swal.fire({
+      title: 'Adicionar equipamento',
+      html: `
+      <form action="/equipamentos/add" method="POST">
+      <div class="form-group">
+          <label for="description">Título</label>
+          <input type="text" class="form-control" name="name">
+      </div>
+      <div class="form-group">
+          <label for="description">Referência</label>
+          <input type="number" class="form-control" name="referencia">
+      </div>
+      <div class="form-group">
+          <label for="description">Data</label>
+          <input type="date" class="form-control" name="data">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submeter</button>
+      </form>
+      `,
+      confirmButtonText: 'Cancelar'
+      })
+    }
+    </script>
+    
+    <script>
+      function editarEquipamento(ref) {
+      Swal.fire({
+      title: 'Editar equipamento',
+      html: `
+      <form action="/equipamentos/editar/${ref}" method="POST">
+      <div class="form-group">
+          <label for="description">Título</label>
+          <input type="text" class="form-control" name="name">
+      </div>
+      <div class="form-group">
+          <label for="description">Referência</label>
+          <input type="number" class="form-control" name="referencia">
+          
+      </div>
+      <div class="form-group">
+          <label for="description">Data</label>
+          <input type="date" class="form-control" name="data">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Editar</button>
+      </form>
+      `,
+      confirmButtonText: 'Cancelar'
+      })
+    }
+    </script>
+    
+    <script>
+      function elimanarEquipamento(ref) {
+      Swal.fire({
+      title: 'Eliminar relatório',
+      html: `
+      <form action="/equipamentos/del/${ref}" method="GET">
+      <div class="form-group">
+          <label for="description">Tem a certeza que pretende eliminar?</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Eliminar</button>
+      </form>
+      `,
+      confirmButtonText: 'Cancelar'
+      })
+    }
+    </script>
+    
     {{#if message}}
     <script>
       const Toast = Swal.mixin({
@@ -212,6 +263,7 @@
     <script>
       feather.replace()
     </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://kit.fontawesome.com/53a74bb770.js" crossorigin="anonymous"></script>
   </body>
 </html>

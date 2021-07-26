@@ -314,7 +314,7 @@ exports.definicoes = async (req, res) => {
       process.env.JWT_SECRET
     );
 
-    const user = await User.findById(decoded.id)
+    const user = await User.findById(decoded.id).select("+password")
     
     if (!name && !email && !senha_antiga) {
       return res.status(400).render('definicoes', { 
@@ -377,9 +377,35 @@ exports.definicoes = async (req, res) => {
       }); 
     }
     
-
+    if (senha_antiga) {
+      if (!await bcrypt.compare(senha_antiga, user.password)) {
+        return res.status(400).render('definicoes', { 
+          message: 'Senha antiga inválida',
+          user: req.user,
+          perms: req.permissoes
+        });
+      }
+      
+      if (nova_senha !== confirmar_nova_senha) {
+        return res.status(400).render('definicoes', {
+            message: 'Nova senha e confirmar nova senha não coincidem',
+            user: req.user,
+            perms: req.permissoes
+        }); 
+      }
+  
+      user.password = nova_senha
+      await user.save();
+      
+      return res.status(200).render('definicoes', {
+          message_sucesso: 'A sua senha foi alterada com sucesso',
+          user: req.user,
+          perms: req.permissoes
+        });
+    }
     
-  } catch {
+  } catch (err) {
+    console.log(err)
     return res.status(400).render('definicoes', { 
       message: 'Erro a tentar alterar dados, tente novamente',
       user: req.user,

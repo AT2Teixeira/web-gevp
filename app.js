@@ -33,7 +33,7 @@ if (process.env.MANU_ON) {
   app.use("/auth", require('./routes/auth'));
   app.use("/loja", require('./routes/loja'));
   app.use("/relatorios", require('./routes/relatorios'));
-  app.use("/projects", require('./routes/projects'));
+  app.use("/equipamentos", require('./routes/equipamentos'));
 }
 
 //Definir erro ao não encontrar a página
