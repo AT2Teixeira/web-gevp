@@ -6,7 +6,7 @@
     {{> header}}
     <link rel="stylesheet" href="/dashboard.css">
   </head>
-
+  
   <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/painel">{{user.empresa}}</a>
@@ -37,8 +37,14 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/relatorios">
-                  <span data-feather="bar-chart-2"></span>
+                  <span data-feather="list"></span>
                   Relatórios
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/equipamentos">
+                  <span data-feather="monitor"></span>
+                  Equipamentos
                 </a>
               </li>
             </ul>
@@ -162,15 +168,26 @@
         data: {
           labels: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
           datasets: [{
+            label: "Nº Equipamentos (1ª Semana)",
             data: [1, 0, 0, 2, 0, 0, 0],
             lineTension: 0,
             backgroundColor: 'transparent',
             borderColor: '#007bff',
             borderWidth: 4,
             pointBackgroundColor: '#007bff'
-          }]
+          },
+          {
+            label: "Nº Equipamentos (2ª Semana)",
+            data: [1, 0, 5, 2, 8, 0, 0],
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#ff0000',
+            borderWidth: 6,
+            pointBackgroundColor: '#ff0000'
+          }],
         },
         options: {
+          responsive: true,
           scales: {
             yAxes: [{
               ticks: {
@@ -179,7 +196,12 @@
             }]
           },
           legend: {
-            display: false,
+            display: true,
+            text: 'Número de equipamentos'
+          },
+          title: {
+            display: true,
+            text: 'Gestão de equipamentos'
           }
         }
       });

@@ -43,23 +43,6 @@ exports.esqueceu_password = async (req, res) => {
   }
 }
 
-exports.carrinho = async (req, res) => {
-  if(req.user) {
-    res.render('carrinho', {
-      user: req.user,
-      relatorio1: req.relatorio1,
-      relatorio2: req.relatorio2,
-      relatorio3: req.relatorio3,
-      relatorio4: req.relatorio4,
-      relatorio5: req.relatorio5,
-      relatorio6: req.relatorio6,
-      relatorio_null: req.relatorio_null
-    });
-  } else {
-    res.redirect('/login');
-  }
-}
-
 exports.login = async (req, res) => {
   if(!req.user) {
     res.render('login', {
@@ -144,6 +127,24 @@ exports.carrinho = (req, res) => {
       user: req.user,
       cart: Cart.getCart(),
       perms: req.permissoes,
+      relatorio1: req.relatorio1,
+      relatorio2: req.relatorio2,
+      relatorio3: req.relatorio3,
+      relatorio4: req.relatorio4,
+      relatorio5: req.relatorio5,
+      relatorio6: req.relatorio6,
+      relatorio_null: req.relatorio_null
+    });
+  } else {
+    res.redirect('/login');
+  }
+}
+
+exports.equipamentos = (req, res) => {
+  if(req.user) {
+    res.render('equipamentos', {
+      user: req.user,
+      equipamentos: req.equipamentos,
       relatorio1: req.relatorio1,
       relatorio2: req.relatorio2,
       relatorio3: req.relatorio3,

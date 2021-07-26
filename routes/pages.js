@@ -24,6 +24,8 @@ router.get("/loja", pageMiddleware, pageController.loja);
 
 router.get("/painel", pageMiddleware, pageController.painel);
 
+router.get("/equipamentos", pageMiddleware, pageController.equipamentos);
+
 router.get("/perfil", pageMiddleware, pageController.perfil);
 
 module.exports = router;
