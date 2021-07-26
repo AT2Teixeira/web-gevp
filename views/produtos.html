@@ -11,7 +11,7 @@
   <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/painel">{{user.empresa}}</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="/auth/logout"><span class="badge badge-pill badge-danger">Sair</span></a>
@@ -27,13 +27,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/painel">
                   <span data-feather="home"></span>
-                  Dashboard
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  Pedidos
+                  Painel
                 </a>
               </li>
               <li class="nav-item">
@@ -43,21 +37,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
-                  Clientes
-                </a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="/relatorios">
                   <span data-feather="bar-chart-2"></span>
                   Relatórios
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrações
                 </a>
               </li>
             </ul>
@@ -196,19 +178,98 @@
             toast.addEventListener('mouseenter', Swal.stopTimer)
             toast.addEventListener('mouseleave', Swal.resumeTimer)
           }
-        })
+        });
 
         Toast.fire({
           icon: 'success',
           title: 'O produto foi adicionado ao carrinho'
-        })
+        });
       }
     </script>
+    
+    <script>
+      function comprarFunction() {
+        Swal.fire({
+          title: '',
+          icon: 'info',
+          html:`
+          <div class="row">
+            <article class="card">
+            <div class="card-body p-5">
+
+            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                <i class="fa fa-credit-card"></i> Cartão de crédito</a></li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                <i class="fab fa-paypal"></i>  Paypal</a></li>
+            </ul>
+
+            <div class="tab-content">
+            <div class="tab-pane fade show active" id="nav-tab-card">
+              <form role="form">
+              <div class="form-group">
+                <label for="username">Nome completo</label>
+                <input type="text" class="form-control" name="username" placeholder="" required="">
+              </div> <!-- form-group.// -->
+
+              <div class="form-group">
+                <label for="cardNumber">Número do cartão</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" name="cardNumber" placeholder="">
+                  <div class="input-group-append">
+                    <span class="input-group-text text-muted">
+                      <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>   
+                      <i class="fab fa-cc-mastercard"></i> 
+                    </span>
+                  </div>
+                </div>
+              </div> <!-- form-group.// -->
+
+              <div class="row">
+                  <div class="col-sm-8">
+                      <div class="form-group">
+                          <label><span class="hidden-xs">Vencimento</span> </label>
+                        <div class="input-group">
+                          <input type="number" class="form-control" placeholder="MM" name="">
+                            <input type="number" class="form-control" placeholder="YY" name="">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                      <div class="form-group">
+                          <label data-toggle="tooltip">Nº Seg</label>
+                          <input type="number" class="form-control" required="">
+                      </div> <!-- form-group.// -->
+                  </div>
+              </div> <!-- row.// -->
+              <button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
+              </form>
+            </div> <!-- tab-pane.// -->
+            <div class="tab-pane fade" id="nav-tab-paypal">
+            <p>Paypal é a maneira mais fácil de pagar online</p>
+            <p>
+            <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Entre com o Paypal </button>
+            </p>
+            </div>
+            </div> <!-- tab-content .// -->
+
+            </div> <!-- card-body.// -->
+            </article> <!-- card.// -->
+
+            </div> <!-- row.// -->
+          `
+        });
+      }
+    </script>
+    
     
     <!-- Ícones -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
+    <script src="https://kit.fontawesome.com/53a74bb770.js" crossorigin="anonymous"></script>
   </body>
 </html>
