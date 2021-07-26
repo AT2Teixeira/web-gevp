@@ -386,7 +386,7 @@ exports.definicoes = async (req, res) => {
         });
       }
       
-      if (nova_senha !== confirmar_nova_senha) {
+      if (nova_senha != confirmar_nova_senha) {
         return res.status(400).render('definicoes', {
             message: 'Nova senha e confirmar nova senha não coincidem',
             user: req.user,

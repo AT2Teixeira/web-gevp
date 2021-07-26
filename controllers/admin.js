@@ -11,7 +11,7 @@ exports.postProduct = (req, res) => {
 
 exports.editProductPage = (req, res) => {
   const products = Product.findById(req.params.prodId);
-  res.render('editar-produto', { 
+  res.render('loja', { 
     product: products[0]
   });
 }
@@ -19,7 +19,7 @@ exports.editProductPage = (req, res) => {
 exports.editProductPost = (req, res) => {
   const updatedProduct = new Product(req.body.id, req.body.title, req.body.price, req.body.imageURL, req.body.description);
   updatedProduct.update();
-  res.redirect(`/loja/${updatedProduct.id}`);
+  res.redirect(`/loja`);
 }
 
 exports.deleteProduct = (req, res) => {
