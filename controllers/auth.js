@@ -305,6 +305,143 @@ exports.alterar_password_post = async (req, res) => {
   }
 }
 
+exports.definicoes = async (req, res) => {
+  const { name, email, senha_antiga, nova_senha, confirmar_nova_senha } = req.body;
+  
+  try {   
+
+    const decoded = await (jwt.verify)(req.cookies.jwt,
+      process.env.JWT_SECRET
+    );
+
+    const user = await User.findById(decoded.id)
+    
+    if (!name && !email && !senha_antiga) {
+      return res.status(400).render('definicoes', { 
+        message: 'Preencha o que deseja alterar',
+        user: req.user,
+        perms: req.permissoes
+      });
+    }
+    
+    if (name) {
+      user.name = name
+      await user.save();
+      
+      res.status(200).render('definicoes', { 
+        message_sucesso: 'Nome alterado com sucesso',
+        user: req.user,
+        perms: req.permissoes
+      });
+    }
+    
+    if (email) {
+      if (await User.findOne({ email })) {
+        return res.status(400).render('definicoes', { 
+          message: 'Email já cadastrado',
+          user: req.user,
+          perms: req.permissoes
+        });
+      }
+      
+      const num = Math.floor(Math.random() * (111111 - 999999) ) + 999999;
+      
+      const now = new Date();
+      now.setHours(now.getHours() + 1);
+
+      user.numero = Number(num)
+      user.numeroEmail = email
+      user.numeroExpires = now
+      
+      await user.save();
+
+      mailer.sendMail({
+        to: email,
+        from: '"Noreply" <web.gevp@gmail.com>',
+        subject: 'Verificação de Identidade',
+        template: 'auth/verificar_numero',
+        context: { num }
+      }, (err) => {
+        if (err) {
+          return res.status(400).render('definicoes', { 
+            message: 'Não foi possível enviar o email',
+            user: req.user ,
+            perms: req.permissoes
+          });
+        }
+        return res.status(200).render('verificar_numero', {
+          message_sucesso: 'Foi enviado um email de verificação, por favor verifique a sua caixa',
+          user: req.user,
+          perms: req.permissoes
+        })
+      }); 
+    }
+    
+
+    
+  } catch {
+    return res.status(400).render('definicoes', { 
+      message: 'Erro a tentar alterar dados, tente novamente',
+      user: req.user,
+      perms: req.permissoes
+    });
+  }
+}
+
+exports.verificar_numero = async (req, res) => {  
+  const { numero } = req.body;
+  
+  try {
+    const user = await User.findOne({ numero }).select("+numero numeroEmail numeroExpires")
+    
+    if (!user) {
+      return res.status(400).render('verificar_numero', { 
+        message: 'Numero não encontrado',
+        user: req.user ,
+        perms: req.permissoes
+      });
+    }
+    
+    if (Number(numero) !== user.numero) {
+      return res.status(400).render('verificar_numero', { 
+        message: 'Numero inválido',
+        user: req.user ,
+        perms: req.permissoes
+      });
+    }
+    
+    const now = new Date()
+    
+    if (now > user.numeroExpires) {
+      return res.status(400).render('verificar_numero', { 
+        message: 'Numero expirado, por favor peça um novamente',
+        user: req.user ,
+        perms: req.permissoes
+      });
+    }
+
+    user.email = user.numeroEmail;
+    user.numero = null; 
+    user.numeroExpires = null;
+    user.numeroEmail = null;
+    
+    await user.save();
+    
+    return res.status(200).render('definicoes', {
+      message_sucesso: 'Email alterado com sucesso',
+      user: req.user ,
+      perms: req.permissoes
+    })
+    
+  } catch {
+    return res.status(400).render('verificar_numero', { 
+      message: 'Erro a tentar verificar o número, tente novamente',
+      user: req.user ,
+      perms: req.permissoes
+    });
+  }
+}
+
 exports.logout = async (req, res) => {
   try {
     res.cookie('jwt', 'logout', {
@@ -316,5 +453,4 @@ exports.logout = async (req, res) => {
   } catch (err) {
     return res.status(400).send({ error: 'Erro ao realizar o logout, tente 23novamente' });
   }
-
 }

@@ -93,46 +93,104 @@
         <div class="col-lg-9">
           <div class="profile-content">
             
+            <form action="/auth/perfil/definicoes" method="POST">
             <div class="my-3 p-3 bg-white rounded box-shadow">
               
               <h6 class="border-bottom border-gray pb-2 mb-0">Definições:</h6>
-              <div class="media text-muted pt-3">
-                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <strong class="d-block text-gray-dark">Alterar nome da empresa</strong>
-                </p>
-              </div>
-              
-              <div class="media text-muted pt-3">
-                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <strong class="d-block text-gray-dark">Alterar email</strong>
-                </p>
-              </div>
-              
-              <div class="media text-muted pt-3">
-                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <strong class="d-block text-gray-dark">Alterar password</strong>
-                </p>
-              </div>
-              
+					<div class="pt-2">
+						<div class="form-group">
+							<label for="fullName">Nome de Usuário</label>
+							<input type="text" class="form-control" name="name" placeholder="{{user.name}}">
+						</div>
+					</div>
+					<div class="pt-2">
+						<div class="form-group">
+							<label for="eMail">Email</label>
+							<input type="email" class="form-control" name="email" placeholder="{{user.email}}">
+						</div>
+					</div>
+					<div class="pt-2">
+						<div class="form-group">
+							<label for="website">Alterar senha</label>
+							<input type="url" class="form-control" name="senha_antiga" placeholder="Senha antiga">
+              <input type="url" class="form-control" name="nova_senha" placeholder="Nova senha">
+              <input type="url" class="form-control" name="confirmar_nova_senha" placeholder="Confirmar nova senha">
+						</div>
+					</div>
+				</div>
+				<div class="row gutters">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="text-right">
+							<button type="button" onclick="cancelFunction()" class="btn btn-secondary">Cancelar</button>
+							<button type="submit" class="btn btn-primary">Confirmar</button>
+						</div>
+					</div>
+				</div>     
+              </form>
             </div>
             
           </div>
         </div>
       </div>
-    </div>
 
     <!-- Footer -->
     {{> footer}}
 
     <!-- Optional JavaScript -->
     {{> js}}
+    {{#if message_sucesso}}
+    <script>
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        });
+
+        Toast.fire({
+          icon: 'success',
+          title: '{{message_sucesso}}, aguarde...'
+        });
+      setTimeout(function() {
+        location.replace('/perfil/definicoes')
+      }, 2000);
+    </script>
+    {{/if}}
+    {{#if message}}
+    <script>
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        });
+
+        Toast.fire({
+          icon: 'error',
+          title: '{{message}}'
+        });
+    </script>
+    {{/if}}
     <script>
       function painelFunction() {
         location.replace('/painel')
       }
     </script>
+    <script>
+      function cancelFunction() {
+        location.replace('/perfil/definicoes')
+      }
+    </script>
+  <script src="https://kit.fontawesome.com/53a74bb770.js" crossorigin="anonymous"></script>
   </body>
 </html>

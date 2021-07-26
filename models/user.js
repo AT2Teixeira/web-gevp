@@ -28,6 +28,18 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     select: false
   },
+  numero: {
+    type: Number,
+    select: false
+  },
+  numeroEmail: {
+    type: String,
+    select: false
+  },
+  numeroExpires: {
+    type: Date,
+    select: false
+  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -35,6 +47,9 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre('save', async function(next) {
+  if (!this.password) {
+    next();
+  }
   const hash = await bcrypt.hash(this.password, 10);
   
   this.password = hash;
