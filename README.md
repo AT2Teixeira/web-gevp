@@ -11,7 +11,7 @@ Comecei com o Desenvolvimento em 2019 (ainda que o primeiro commit para o GitHub
 | Bootstrap           | Tailwind CSS                                         |
 | Organização na Raiz | Organização estruturada (e.g.: ./src/controllers,..) |
 
-Quando olho para o que fiz à uns anos consigo ter total percessão do que evolui nesse aspeto e o que faria melhor agora!
+**Quando olho para o que fiz à uns anos consigo ter total percessão do que evolui nesse aspeto e o que faria melhor agora (e.g.: Usar um ciclo for para mapear array em vez de passar item a item para o front-end 🤦‍♂️)!**
 Olho para este projeto com um carinho especial por ser um projeto especial!
 
 
