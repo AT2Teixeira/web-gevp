@@ -4,9 +4,13 @@ Este foi o meu projeto de aptidão profissional final de curso.
 
 Comecei com o Desenvolvimento em 2019 (ainda que o primeiro commit para o GitHub foi em 2021, pois foi nesse mesmo ano que criei a miha conta) com o início do meu curso, e apresentei o projeto em Julho de 2021.
 
-**Tornei o projeto público com o intuito de ajudar, inspirar e partilhar com mais pessoas o meu primeiro projeto web!**
+**Convém reforçar que hoje em dia eu adoto outras linguagens/ferramentas e outra organização de código como exemplos:**
+| Antes (2020)        | Agora (2025)                                         |
+|---------------------|------------------------------------------------------|
+| JavaScript          | TypeScript                                           |
+| Bootstrap           | Tailwind CSS                                         |
+| Organização na Raiz | Organização estruturada (e.g.: ./src/controllers,..) |
 
-Convém reforçar que hoje em dia eu adoto outras ferramentas e outra organização de código. 
 Quando olho para o que fiz à uns anos consigo ter total percessão do que evolui nesse aspeto e o que faria melhor agora!
 Olho para este projeto com um carinho especial por ser um projeto especial!
 
