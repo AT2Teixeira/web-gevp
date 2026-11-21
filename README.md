@@ -5,7 +5,7 @@ Este foi o meu projeto de aptidão profissional final de curso.
 Comecei com o Desenvolvimento em 2019 (no entanto o primeiro commit para o GitHub foi em 2021, pois foi nesse mesmo ano que criei a conta) com o início do meu curso, e apresentei o projeto em Julho de 2021.
 
 **Convém reforçar que hoje em dia eu adoto outras linguagens/ferramentas e outra organização de código como exemplos:**
-| Antes (2020)        | Agora (2024)                                         |
+| Antes (2019)        | Agora (2024)                                         |
 |---------------------|------------------------------------------------------|
 | JavaScript          | TypeScript                                           |
 | Bootstrap           | Tailwind CSS                                         |
